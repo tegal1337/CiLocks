@@ -53,3 +53,4 @@ https://forum.xda-developers.com/t/universal-guide-root-any-android-device-manua
 <br>
 https://stackoverflow.com/questions/14685721/how-can-i-do-factory-reset-using-adb-in-android
 <br>
+Contac Me <a href="mailto:mitsuhamizaki@gmail.com">Email</a>
