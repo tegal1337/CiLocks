@@ -13,27 +13,28 @@
 - Cable Usb <br>
 - Android Emulator {NetHunter/Termux} Root <br>
 - Or Computer <br>
-### Compatible <br>
+<h3> Compatible </h3>
+<br>
 - Linux <br>
 - Windows <br>
 - Mac <br>
-### Tested On <br>
+<h3> Tested On </h3><br>
 - Kali Linux <br>
-### How To Run <br> 
+<h3> How To Run </h3><br> 
 - `https://github.com/tegal1337/CiLocks` <br>
 - `cd CiLocks` <br>
 - `chmod +x cilocks` <br>
 - `bash cilocks` <br>
 <br>
-## For Android Emulator  <br>
+<h2> For Android Emulator </h2> <br>
 - Install Busybox <br>
 - Root <br>
-##### If brute doesn't work then uncomment this code <br>
+<h5> If brute doesn't work then uncomment this code </h5><br>
 `# adb shell input keyevent 26` <br>
-### Image
+<h3> Image </h3> <br>
 <img src=https://github.com/tegal1337/CiLocks/blob/main/Screenshot_2021-05-02_14-32-27.png>
 <br>
-### Video
+<h3> Video</h3>
 <br>
 Bypass LockScreen <br>
 https://youtu.be/PPMhzt4lGmU <br>
