@@ -21,10 +21,10 @@
 <h3> Tested On </h3><br>
 - Kali Linux <br>
 <h3> How To Run </h3><br> 
-- `https://github.com/tegal1337/CiLocks` <br>
-- `cd CiLocks` <br>
-- `chmod +x cilocks` <br>
-- `bash cilocks` <br>
+- git clone https://github.com/tegal1337/CiLocks <br>
+- cd CiLocks <br>
+- chmod +x cilocks <br>
+- bash cilocks <br>
 <br>
 <h2> For Android Emulator </h2> <br>
 - Install Busybox <br>
