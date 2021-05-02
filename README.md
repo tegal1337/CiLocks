@@ -31,6 +31,7 @@
 - Root <br>
 <h5> If brute doesn't work then uncomment this code </h5><br>
 `# adb shell input keyevent 26` <br>
+if 5x the wrong password will automatically delay 30 seconds
 <h3> Image </h3> <br>
 <img src=https://github.com/tegal1337/CiLocks/blob/main/Screenshot_2021-05-02_14-32-27.png>
 <br>
