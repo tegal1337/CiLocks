@@ -5,7 +5,7 @@
 - Brute LockScreen Using Wordlist
 - Bypass LockScreen {Antiguard} Not Support All OS Version
 - Root Android {Supersu} Not Support All OS Version
-- Still File 
+- Steal File 
 - Reset Data <br>
 ### Required
 <br>
