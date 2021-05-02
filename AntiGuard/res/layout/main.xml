@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
+
+<Button android:text="Back" 
+	android:id="@+id/backButton" 
+	android:layout_width="wrap_content" 
+	android:layout_height="wrap_content"></Button>
+
+<Button android:text="Launcher" 
+	android:id="@+id/launcherButton" 
+	android:layout_width="wrap_content" 
+	android:layout_height="wrap_content"></Button>
+
+<Button android:text="Development Settings" 
+	android:id="@+id/developmentButton" 
+	android:layout_width="wrap_content" 
+	android:layout_height="wrap_content"></Button>
+
+<Button android:text="Uninstall AntiGuard"
+	android:id="@+id/uninstallButton" 
+	android:layout_width="wrap_content" 
+	android:layout_height="wrap_content"></Button>
+
+</LinearLayout>

