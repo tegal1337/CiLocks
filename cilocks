@@ -46,7 +46,7 @@ echo -e "${lh}
 ${n}"
 read -p "senpai@tegalsec:~# " select
 if [[ $select == 1 ]]; then
-    bash config/devices
+    echo "This Latest Version!"
 elif [[ $select == 2 ]]; then
   #adb shell input keyevent 26 #Pressing the lock button
   adb shell input keyevent 82
