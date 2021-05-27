@@ -32,7 +32,7 @@
 - Install Busybox <br>
 - Root <br>
 <h3> If brute doesn't work then uncomment this code </h5><br>
-`# adb shell input keyevent 26` <br>
+<b># adb shell input keyevent 26 </b><br>
 if 5x the wrong password will automatically delay 30 seconds
 <h3> Image </h3> <br>
 <img src=https://github.com/tegal1337/CiLocks/blob/main/IMG-20210527-WA0123.jpg>
