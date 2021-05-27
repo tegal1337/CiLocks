@@ -1,11 +1,13 @@
 ### Features
-
+- Update
 - Brute Pin 4 Digit
 - Brute Pin 6 Digit
 - Brute LockScreen Using Wordlist
 - Bypass LockScreen {Antiguard} Not Support All OS Version
 - Root Android {Supersu} Not Support All OS Version
-- Steal File 
+- Jump To Adb Toolkit
+- Remove Lockscreen {Root}
+- Jump To Metasploit
 - Reset Data <br>
 ### Required
 <br>
@@ -24,7 +26,7 @@
 - git clone https://github.com/tegal1337/CiLocks <br>
 - cd CiLocks <br>
 - chmod +x cilocks <br>
-- bash cilocks <br>
+- sudo bash cilocks <br>
 <br>
 <h2> For Android Emulator </h2> <br>
 - Install Busybox <br>
