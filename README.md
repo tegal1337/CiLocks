@@ -27,44 +27,51 @@
 
 ![](https://github.com/tegal1337/CiLocks/blob/main/Screenshoot/cilock-01.jpeg)![](https://github.com/tegal1337/CiLocks/blob/main/Screenshoot/cilock-02.jpeg)![](https://github.com/tegal1337/CiLocks/blob/main/Screenshoot/cilock-03.jpeg)![](https://github.com/tegal1337/CiLocks/blob/main/Screenshoot/cilock-04.jpeg)![](https://github.com/tegal1337/CiLocks/blob/main/Screenshoot/cilock-05.jpeg)
 
-
 ### Required
-<br>
-- Adb {Android SDK} <br>
-- Cable Usb <br>
-- Android Emulator {NetHunter/Termux} Root <br>
-- Or Computer <br>
-<h3> Compatible </h3>
-<br>
-- Linux <br>
-- Windows <br>
-- Mac <br>
-<h3> Tested On </h3><br>
-- Kali Linux <br>
-<h3> How To Run </h3><br> 
-- git clone https://github.com/tegal1337/CiLocks <br>
-- cd CiLocks <br>
-- chmod +x cilocks <br>
-- sudo bash cilocks <br>
-<br>
-<h2> For Android Emulator </h2> <br>
-- Install Busybox <br>
-- Root <br>
-<h3> If brute doesn't work then uncomment this code </h5><br>
-<b># adb shell input keyevent 26 </b><br>
-if 5x the wrong password will automatically delay 30 seconds
-<h3> Image </h3> <br>
-<img src=https://github.com/tegal1337/CiLocks/blob/main/IMG-20210527-WA0123.jpg>
-<br>
-<h3> Video</h3>
-<br>
-Bypass LockScreen <br>
-https://youtu.be/PPMhzt4lGmU <br>
-BruteForce Pin <br>
+
+    ADB {Android SDk}
+    
+    USB Cable
+    
+    Android Emulator {Nethunter/Termux} Root
+    
+    Or Computer
+
+
+### Installation For Linux 
+
+    git clone https://github.com/tegal1337/CiLocks
+    
+    cd CiLocks
+    
+    chmod +x cilocks
+    
+    sudo bash cilocks
+
+ After Following All Steps Just Type In Terminal **root@tegalsec:~** **./cilocks**
+
+### For Android Emulator
+
+    Install Busybox
+    
+    Root Access
+
+### If brute doesn't work then uncomment this code
+
+    # adb shell input keyevent 26
+    
+    if 5x the wrong password will automatically delay 30 seconds
+
+
+### Video
+#### Bypass LockScreen
+https://youtu.be/PPMhzt4lGmU
+#### BruteForce Pin
 https://youtu.be/D2xjJUQ9Lsw
 
+#### Thanks to original Author of the tools used in CiLocks
+
 ### Reference And Media
- <br>
 https://stackoverflow.com/questions/29072501/how-to-unlock-android-phone-through-adb
 <br>
 http://www.hak5.org/episodes/hak5-1205
@@ -75,9 +82,8 @@ https://forum.xda-developers.com/t/universal-guide-root-any-android-device-manua
 <br>
 https://stackoverflow.com/questions/14685721/how-can-i-do-factory-reset-using-adb-in-android
 <br>
-Contac Me <a href="mailto:mitsuhamizaki@gmail.com">Email</a>
-<b><h1>give me a donation to buy coffee</h1></b>
-<h3>Bitcoin</h3>
-31zr9sgjrz45WRMbjFAzdDMDZyw3a9tnU8
-<h3>Dana/Ovo/Gopay</h3>
-087730938323
+
+#### Contact <a href="mailto:mitsuhamizaki@gmail.com">Email</a>
+#### Give me a donation to buy coffee ☕
+  Bitcoin 31zr9sgjrz45WRMbjFAzdDMDZyw3a9tnU8
+  Dana/Ovo/Gopay 087730938323
