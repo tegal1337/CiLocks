@@ -1,14 +1,28 @@
-### Features
-- Update
-- Brute Pin 4 Digit
-- Brute Pin 6 Digit
-- Brute LockScreen Using Wordlist
-- Bypass LockScreen {Antiguard} Not Support All OS Version
-- Root Android {Supersu} Not Support All OS Version
-- Jump To Adb Toolkit
-- Remove Lockscreen {Root}
-- Jump To Metasploit
-- Reset Data <br>
+## CiLocks | Android Hacking 📱
+### Crack Interface lockscreen, Metasxploit and More Android Hacking
+![](https://img.shields.io/github/license/tegal1337/CiLocks)
+![](https://img.shields.io/github/issues/tegal1337/CiLocks)
+![](https://img.shields.io/github/issues-closed/tegal1337/CiLocks)
+![](https://img.shields.io/github/forks/tegal1337/CiLocks)
+![](https://img.shields.io/github/stars/tegal1337/CiLocks)
+![](https://img.shields.io/github/last-commit/tegal1337/CiLocks)
+
+<img src ="https://img.shields.io/badge/Important-notice-red" />
+<h4>Please Don't Use for illegal Activity</h4>
+
+### Update Available V1.1.0 🚀 
+- [x] Added New Tools 
+    - [x] Root Android {Supersu} Not Support All OS Version
+    - [x] Jump To Adb Toolkit
+    - [x] Remove Lockscreen {Root}
+    - [x] Jump To Metasploit
+    - [x] Restore All Media Deleted (Coomingsoon)
+- [x] Brute Pin 4 Digit
+- [x] Brute Pin 6 Digit
+- [x] Brute LockScreen Using Wordlist
+- [x] Bypass LockScreen {Antiguard} Not Support All OS Version
+- [x] Reset Data
+
 ### Required
 <br>
 - Adb {Android SDK} <br>
