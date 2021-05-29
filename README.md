@@ -1,5 +1,5 @@
 ## CiLocks | Android Hacking 📱
-### Crack Interface lockscreen, Metasxploit and More Android Hacking
+### Crack Interface lockscreen, Metasploit and More Android Hacking
 ![](https://img.shields.io/github/license/tegal1337/CiLocks)
 ![](https://img.shields.io/github/issues/tegal1337/CiLocks)
 ![](https://img.shields.io/github/issues-closed/tegal1337/CiLocks)
