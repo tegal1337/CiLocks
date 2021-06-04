@@ -100,7 +100,15 @@ https://stackoverflow.com/questions/14685721/how-can-i-do-factory-reset-using-ad
 <br>
 https://github.com/Screetsec/TheFatRat
 <br>
+
+### Follow Us
+---------------------------------------------------  
+Instagram: https://www.instagram.com/tegalsec/
+<br>Facebook: https://www.facebook.com/tegal1337/
+<br>Github : https://github.com/tegal1337/
+<br>Website : https://tegalsec.org/
+
 #### Contact <a href="mailto:mitsuhamizaki@gmail.com">Email</a>
-#### Give me a donation to buy coffee ☕
+#### Give a donation to buy coffee ☕
   Bitcoin <br>31zr9sgjrz45WRMbjFAzdDMDZyw3a9tnU8<br>
   Dana/Ovo/Gopay <br>087730938323
