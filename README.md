@@ -97,7 +97,7 @@ https://forum.xda-developers.com/t/universal-guide-root-any-android-device-manua
 https://stackoverflow.com/questions/14685721/how-can-i-do-factory-reset-using-adb-in-android
 <br>
 https://github.com/Screetsec/TheFatRat
-<br.
+<br>
 #### Contact <a href="mailto:mitsuhamizaki@gmail.com">Email</a>
 #### Give me a donation to buy coffee ☕
   Bitcoin <br>31zr9sgjrz45WRMbjFAzdDMDZyw3a9tnU8<br>
