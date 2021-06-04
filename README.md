@@ -60,9 +60,11 @@
     
     chmod +x cilocks
     
-    sudo bash cilocks or ./cilocks
+    sudo bash cilocks 
+    or ./cilocks
 
 <!--  After Following All Steps Just Type In Terminal **root@tegalsec:~** **./cilocks** -->
+or download <a href="https://github.com/tegal1337/CiLocks/releases/download/v1.2/CiLocks_v1.2.zip">here</a>
 
 ### For Android Emulator
 
