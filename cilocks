@@ -10,6 +10,7 @@ lb="\e[1;34m" # langit biru
 n="\e[0m" # netral
 w="\e[1;37m" # putih tebal
 
+
 clear
 [[ `id -u` -eq 0 ]] > /dev/null 2>&1 || { echo -e ${m} "You must be root to run the script${n}"; echo ; exit 1; }
 path=$(pwd)
