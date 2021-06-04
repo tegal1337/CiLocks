@@ -176,13 +176,7 @@ elif [[ $select == 4 ]]; then
 
       if ! (( `expr $i + 1` % 5 )); then
           adb shell input keyevent 66
-          echo "Delay Limit 30s"
-          secs=$((1 * 30))
-          while [ $secs -gt 0 ]; do
-             echo -ne "$secs\033[0K\r"
-             sleep 1
-             : $((secs--))
-          done
+          echo "Delay Limit 30s
 
           sleep 30
           adb shell input keyevent 82
