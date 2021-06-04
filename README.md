@@ -10,13 +10,28 @@
 <img src ="https://img.shields.io/badge/Important-notice-red" />
 <h4>Please Don't Use for illegal Activity</h4>
 
-### Update Available V1.1.0 🚀 
+### Update Available V1.2 🚀 
 - [x] Added New Tools 
     - [x] Root Android {Supersu} Not Support All OS Version
     - [x] Jump To Adb Toolkit
+        - [x] Shell
+        - [x] ScreenShot
+        - [x] Copy All Camera Photo
+        - [x] Copy All WhatsApp Folder
+        - [x] Copy All Data Storage
+        - [x] Manual Copy {Costum}
+        - [x] Backup Data
+        - [x] Restore Data
+        - [x] Permissons Reset
+        - [x] Reboot
     - [x] Remove Lockscreen {Root}
-    - [x] Jump To Metasploit
-    - [x] Restore All Media Deleted (Coomingsoon)
+    - [x] Jump To Metasploit   
+        - [x] Install Application
+        - [x] Create Payload Backdoor {Msfvenom} Singed
+        - [x] Run Metasploit
+        - [x] Inject Payload In Original Application
+     - [x] Phone Info
+     - [x] Control Android {Scrcpy}
 - [x] Brute Pin 4 Digit
 - [x] Brute Pin 6 Digit
 - [x] Brute LockScreen Using Wordlist
@@ -24,8 +39,7 @@
 - [x] Reset Data
 
 ### Screenshoot 📷
-
-![](https://github.com/tegal1337/CiLocks/blob/main/Screenshoot/cilock-01.jpeg)![](https://github.com/tegal1337/CiLocks/blob/main/Screenshoot/cilock-02.jpeg)![](https://github.com/tegal1337/CiLocks/blob/main/Screenshoot/cilock-03.jpeg)![](https://github.com/tegal1337/CiLocks/blob/main/Screenshoot/cilock-04.jpeg)![](https://github.com/tegal1337/CiLocks/blob/main/Screenshoot/cilock-05.jpeg)
+![](https://github.com/tegal1337/CiLocks/blob/main/Screenshoot/cilok-00.png)![](https://github.com/tegal1337/CiLocks/blob/main/Screenshoot/cilock-01.jpeg)![](https://github.com/tegal1337/CiLocks/blob/main/Screenshoot/cilock-02.jpeg)![](https://github.com/tegal1337/CiLocks/blob/main/Screenshoot/cilock-03.jpeg)![](https://github.com/tegal1337/CiLocks/blob/main/Screenshoot/cilock-04.jpeg)![](https://github.com/tegal1337/CiLocks/blob/main/Screenshoot/cilock-05.jpeg)
 
 ### Required
 
@@ -46,9 +60,9 @@
     
     chmod +x cilocks
     
-    sudo bash cilocks
+    sudo bash cilocks or ./cilocks
 
- After Following All Steps Just Type In Terminal **root@tegalsec:~** **./cilocks**
+<!--  After Following All Steps Just Type In Terminal **root@tegalsec:~** **./cilocks** -->
 
 ### For Android Emulator
 
@@ -82,8 +96,9 @@ https://forum.xda-developers.com/t/universal-guide-root-any-android-device-manua
 <br>
 https://stackoverflow.com/questions/14685721/how-can-i-do-factory-reset-using-adb-in-android
 <br>
-
+https://github.com/Screetsec/TheFatRat
+<br.
 #### Contact <a href="mailto:mitsuhamizaki@gmail.com">Email</a>
 #### Give me a donation to buy coffee ☕
-  Bitcoin 31zr9sgjrz45WRMbjFAzdDMDZyw3a9tnU8
-  Dana/Ovo/Gopay 087730938323
+  Bitcoin <br>31zr9sgjrz45WRMbjFAzdDMDZyw3a9tnU8<br>
+  Dana/Ovo/Gopay <br>087730938323
