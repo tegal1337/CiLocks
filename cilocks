@@ -90,7 +90,7 @@ clear
   ${n}"
   read -p "senpai@tegalsec:~# " select
 if [[ $select == 1 ]]; then
-  remove old version
+  #remove old version
   rm -f "${path}/cilocks" >/dev/null 2>&1
   rm -f "${path}/data/config" >/dev/null 2>&1
   rm -f "${path}/data/os" >/dev/null 2>&1
