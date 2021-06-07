@@ -141,3 +141,4 @@ banner
 echo "Please Wait... \ "
 sleep 0.5
 clear
+banner
