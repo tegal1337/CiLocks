@@ -47,6 +47,7 @@
 - [x] IP Logger (Track IP Location and Information) 
 - [x] SpyCam (Take webcam shots from target just sending a malicious link) 
 - [x] IOS Payload
+- [x] FireStore Vulnerability
 
 #### Screenshoot 📷
 
