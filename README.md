@@ -63,7 +63,7 @@
     
     sudo apt update -y
     
-    sudo apt install php nodejs npm adb scrcpy wget unzip -y
+    sudo apt install php nodejs npm adb scrcpy wget unzip apktool jq -y
 
 #### And if needed
     
@@ -103,6 +103,8 @@ or download <a href="https://github.com/tegal1337/CiLocks/releases/download/V2.1
     Install Busybox
     
     Root Access
+    
+    Otg Cable
 
 #### If brute doesn't work then uncomment this code
 
