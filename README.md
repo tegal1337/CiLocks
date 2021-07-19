@@ -10,7 +10,7 @@
 <img src ="https://img.shields.io/badge/Important-notice-red" />
 <h4>Please Don't Use for illegal Activity</h4>
 
-### Update Available V1.2 🚀 
+### Update Available V2.1 🚀 
 - [x] Added New Tools 
     - [x] Root Android {Supersu} Not Support All OS Version
     - [x] Jump To Adb Toolkit
@@ -37,6 +37,9 @@
 - [x] Brute LockScreen Using Wordlist
 - [x] Bypass LockScreen {Antiguard} Not Support All OS Version
 - [x] Reset Data
+- [x] IP Logger (Track IP Location and Information) 
+- [x] SpyCam (Take webcam shots from target just sending a malicious link) 
+- [x] IOS Payload
 
 ### Screenshoot 📷
 ![](https://github.com/tegal1337/CiLocks/blob/main/Screenshoot/cilok-00.png)![](https://github.com/tegal1337/CiLocks/blob/main/Screenshoot/cilock-01.jpeg)![](https://github.com/tegal1337/CiLocks/blob/main/Screenshoot/cilock-02.jpeg)![](https://github.com/tegal1337/CiLocks/blob/main/Screenshoot/cilock-03.jpeg)![](https://github.com/tegal1337/CiLocks/blob/main/Screenshoot/cilock-04.jpeg)![](https://github.com/tegal1337/CiLocks/blob/main/Screenshoot/cilock-05.jpeg)
@@ -79,15 +82,16 @@ or download <a href="https://github.com/tegal1337/CiLocks/releases/download/V2.1
     if 5x the wrong password will automatically delay 30 seconds
 
 
-### Video
-#### Bypass LockScreen
-https://youtu.be/PPMhzt4lGmU
-#### BruteForce Pin
-https://youtu.be/D2xjJUQ9Lsw
+### Article & Video
+
+Android Malware https://www.instagram.com/p/CPqJAvHjQ2Q/
+YAFI TECH https://www.youtube.com/watch?v=gYIfJUiBBWo
+Malware Tech https://www.youtube.com/watch?v=ZhBvWkGknKA
+KitPloit https://www.kitploit.com/2021/05/cilocks-android-lockscreen-bypass.html
 
 #### Thanks to original Author of the tools used in CiLocks
 
-### Reference And Media
+### Reference 
 https://stackoverflow.com/questions/29072501/how-to-unlock-android-phone-through-adb
 <br>
 http://www.hak5.org/episodes/hak5-1205
