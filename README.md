@@ -58,19 +58,28 @@
 :-------------------------:|:-------------------------:|:---------------------:
 ![](https://github.com/tegal1337/CiLocks/blob/main/Screenshoot/cilocks04.png?raw=true)|![](https://github.com/tegal1337/CiLocks/blob/main/Screenshoot/cilocks05.png?raw=true)|![](https://github.com/tegal1337/CiLocks/blob/main/Screenshoot/cilocks06.png?raw=true)
 
-#### Required
+### Requirements
+    
+    sudo apt update -y
+    
+    sudo apt install php nodejs npm adb scrcpy -y
 
-    ADB {Android SDk}
+#### And if needed
+    
+    sudo apt install msfconsole -y 
+
+### Required
+
+    ADB {Android SDK}
     
     USB Cable
     
     Android Emulator {Nethunter/Termux} Root
     
     Or Computer
-    
 
 
-#### Installation For Linux 
+### Installation For Linux 
 
     git clone https://github.com/tegal1337/CiLocks
     
@@ -79,12 +88,16 @@
     chmod +x cilocks
     
     sudo bash cilocks 
-    or ./cilocks
+    
+    or sudo ./cilocks
+
 
 <!--  After Following All Steps Just Type In Terminal **root@tegalsec:~** **./cilocks** -->
 or download <a href="https://github.com/tegal1337/CiLocks/releases/download/V2.1/Cilocks_V2.1.zip">here</a>
 
-#### For Android Emulator
+### For Android Emulator
+
+    Install Termux/NetHunter
 
     Install Busybox
     
