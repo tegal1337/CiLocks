@@ -130,7 +130,7 @@ or download <a href="https://github.com/tegal1337/CiLocks/releases/download/V2.1
 </table>
 
 #### Reference 
-<br>
+
 https://stackoverflow.com/questions/29072501/how-to-unlock-android-phone-through-adb
 <br>
 http://www.hak5.org/episodes/hak5-1205
@@ -145,13 +145,17 @@ https://github.com/Screetsec/TheFatRat
 <br>
 
 #### Follow Us
----------------------------------------------------  
+
 Instagram: https://www.instagram.com/tegalsec/
 <br>Facebook: https://www.facebook.com/tegal1337/
 <br>Github : https://github.com/tegal1337/
 <br>Website : https://tegalsec.org/
 
-#### Contact <a href="mailto:mitsuhamizaki@gmail.com">Email</a>
-#### Give a donation to buy coffee ☕
+
+[![Foo](https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif)](#)
+#### Support our organization by giving donations
   Bitcoin <br>31zr9sgjrz45WRMbjFAzdDMDZyw3a9tnU8<br>
   Dana/Ovo/Gopay <br>087730938323
+
+#### Contact <a href="mailto:mitsuhamizaki@gmail.com">Email</a>
+  
