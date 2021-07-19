@@ -93,6 +93,7 @@ clear
   12.Phone Info
   13.IP Logger {Over Internet}
   14.Get WebCam {Over Internet}
+  15.FireStore Vulnerability
   99.Exit
   ${n}"
   read -p "senpai@tegalsec:~# " select
@@ -945,9 +946,83 @@ elif [[ $select == 14 ]]; then
   loli
 
 
+
+elif [[ $select == 15 ]]; then
+  clear
+  function fire() {
+    banner
+    echo -e "${m}   FireStore Vulnerability${n}"
+  }
+  fire
+  echo -e "${lh}
+  1.Scanning APK Without Authentication
+  ${n}"
+  read -p "senpai@tegalsec:~# " select
+  if [[ $select == 1 ]]; then
+
+    milf() {
+        rm -rf "$filename"
+        exit
+    }
+    read -p "File: " loli
+
+    filename=$(basename -- "$loli")
+    extension="${filename##*.}"
+    filename="fsp-${filename%.*}"
+
+    if [[ "$extension" == "apk" ]]; then
+        echo -e "${k}[!] The specified APK is $loli.${n}\n"
+
+        if apktool d "$loli" -o "$filename" >/dev/null 2>&1; then
+            echo -e "${lh}[+] Successful decompilation with apktool.${n}\n"
+        else
+            echo -e "${m}[-] Decompilation failed with apktool.${n}"
+            milf
+        fi
+
+        if ! grep -qi "firebase" "$filename/AndroidManifest.xml"; then
+            echo -e "${m}[-] Firebase not found in the AndroidManifest.xml${n}"
+            milf
+        else
+            echo -e "${lh}[+] Firebase found in the AndroidManifest.xml${n}\n"
+            if ! projectID=$(grep -i "project_id" "$filename/res/values/strings.xml"); then
+                echo -e "${m}[-] project_id not found in res/values/strings.xml file.${n}"
+                milf
+            else
+                echo -e "${lh}[+] project_id found in res/values/strings.xml file:${n}"
+                projectID=$(echo "$projectID" | sed -n 's:.*<string name="project_id">\(.*\)</string>.*:\1:pI')
+                echo -e "$projectID\n"
+                matchString="lcom/google/firebase/firestore/FirebaseFirestore"
+                for c in $(grep -hA 2 "$matchString" -irw "$filename"/smali* 2>/dev/null | grep -iv "$matchString" | grep const-string | sed 's/[^"]*"\([^"]*\)".*/\1/' | sort -u | sed 's/Provided data must not be null.//g'); do
+                    collections+=("$c")
+                done
+
+                if [ "${#collections[@]}" -eq 0 ]; then
+                    echo -e "${m}[-] No collections found in .smali files.${n}"
+                    milf
+                else
+                    echo -e "${lh}[+] ${#collections[@]} Collection(s) found in .smali files.${n}"
+                    for c in "${collections[@]}"; do
+                         echo "$c"
+                    done; echo
+
+                    echo -e "${k}[!] IMPORTANT: Consulting collections can have an economic impact on the objective."
+                    echo -e "    Firestore has a daily expense depending on the number of operations performed.${n}\n"
+                fi
+            fi
+        fi
+    else
+        echo -e "${m}[-] The specified file does not have an .apk extension.${n}"
+        milf
+    fi
+
+  fi
+
+
 elif [[ $select == 99 ]]; then
     echo "oke"
 
 else
   echo -e  "${m} Your Brain Error!${n}"
   fi
+
