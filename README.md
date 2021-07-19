@@ -62,7 +62,7 @@
     
     sudo apt update -y
     
-    sudo apt install php nodejs npm adb scrcpy wget -y
+    sudo apt install php nodejs npm adb scrcpy wget unzip -y
 
 #### And if needed
     
