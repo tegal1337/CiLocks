@@ -105,7 +105,7 @@ or download <a href="https://github.com/tegal1337/CiLocks/releases/download/V2.1
 
 #### Thanks to original Author of the tools used in CiLocks
 
-## Contributors
+#### Contributors
 
 [![contributions](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/tegal1337/CiLocks/issues)
 <table>
@@ -115,7 +115,9 @@ or download <a href="https://github.com/tegal1337/CiLocks/releases/download/V2.1
     
   </tr>
 </table>
-#### Reference <br>
+
+#### Reference 
+<br>
 https://stackoverflow.com/questions/29072501/how-to-unlock-android-phone-through-adb
 <br>
 http://www.hak5.org/episodes/hak5-1205
