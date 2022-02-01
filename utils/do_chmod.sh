@@ -2,8 +2,8 @@
 
 do_chmod() {
     # Source and utils path
-    utils=$1/$2;
-    source=$1/$3;
+    local utils=$1/$2;
+    local source=$1/$3;
 
     chmod +x "$utils";
     chmod +x "$source";

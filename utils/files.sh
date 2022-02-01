@@ -5,6 +5,6 @@ function files() {
     clear
 
     # File path
-    file=$1/$2;
+    local file=$1/$2;
     bash "$file"
 }
