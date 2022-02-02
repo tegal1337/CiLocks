@@ -8,7 +8,7 @@ bypasslockscreenantiguard() {
     if [ $isInstalled -eq 0 ]; then
         adb uninstall io.kos.antiguard
     else
-        adb install ./AntiGuard/AntiGuard.apk
+        adb install ../anti_guard/AntiGuard.apk
         adb shell am start io.kos.antiguard/.unlock
     fi
 }

@@ -7,7 +7,7 @@ adbtoolkit() {
     # Show banner and title
     banner
     echo -e "           Adb Toolkit"
-    
+
     # Show menu
     echo -e "
 1.Shell
