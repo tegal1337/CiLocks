@@ -1,144 +1,177 @@
 #!/usr/bin/env bash
-m="\e[0;31m" # merah
-k="\e[0;33m" # kuning
-h="\e[0;32m" # hijau
-b="\e[0;34m" # biru
-lm="\e[1;31m" # merah terang
-lk="\e[1;33m" # kuning terang
-lh="\e[1;32m" # hijau terang
-lb="\e[1;34m" # langit biru
-n="\e[0m" # netral
-clear
-function os() {
 
-echo -e "${lb}
-   _______ __               __
-  / ____(_) /   ____  _____/ /_______
- / /   / / /   / __ \/ ___/ //_/ ___/
-/ /___/ / /___/ /_/ / /__/ ,< (__  )
-\____/_/_____/\____/\___/_/|_/____/
-${n}"
-echo -e "${m}   Crack Interface LockScreen${n}"
-echo -e "${lb}      LoliC0d3 - Tegal1337${n}"
+banner_os() {
+   clear
+
+   echo "Please Wait.   / "
+   sleep 0.5
+   clear
+   banner "$1"
+   echo -e ""
+   
+   echo "Please Wait..  | "
+   sleep 0.5
+   clear
+   banner "$1"
+   echo -e ""
+
+   echo "Please Wait... \ "
+   sleep 0.5
+   clear
+   banner "$1"
+   echo -e ""
+
+   echo "Please Wait.   / "
+   sleep 0.5
+   clear
+   banner "$1"
+   echo -e ""
+
+   echo "Please Wait..  | "
+   sleep 0.5
+   clear
+   banner "$1"
+   echo -e ""
+   
+   echo "Please Wait... \ "
+   sleep 0.5
+   clear
+   banner "$1"
+   echo -e ""
+
+   echo "Please Wait.   / "
+   sleep 0.5
+   clear
+   banner "$1"
+   echo -e ""
+   
+   echo "Please Wait..  | "
+   sleep 0.5
+   clear
+   banner "$1"
+   echo -e ""
+   
+   echo "Please Wait... \ "
+   sleep 0.5
+   clear
+   banner "$1"
+   echo -e ""
+   
+   echo "Please Wait.   / "
+   sleep 0.5
+   clear
+   banner "$1"
+   echo -e ""
+   
+   echo "Please Wait..  | "
+   sleep 0.5
+   clear
+   banner "$1"
+   echo -e ""
+
+   echo "Please Wait... \ "
+   sleep 0.5
+   clear
+   banner "$1"
+   echo -e ""
+   
+   echo "Please Wait.   / "
+   sleep 0.5
+   clear
+   banner "$1"
+   echo -e ""
+   
+   echo "Please Wait..  | "
+   sleep 0.5
+   clear
+   banner "$1"
+   echo -e ""
+   
+   echo "Please Wait... \ "
+   sleep 0.5
+   clear
+   banner "$1"
+   echo -e ""
+
+   echo "Please Wait.   / "
+   sleep 0.5
+   clear
+   banner "$1"
+   
+   echo "Please Wait..  | "
+   sleep 0.5
+   clear
+   banner "$1"
+   echo -e ""
+   
+   echo "Please Wait... \ "
+   sleep 0.5
+   clear
+   banner "$1"
+   echo -e ""
+   
+   echo "Please Wait.   / "
+   sleep 0.5
+   clear
+   banner
+   
+   echo "Please Wait..  | "
+   sleep 0.5
+   clear
+   banner "$1"
+   echo -e ""
+   
+   echo "Please Wait... \ "
+   sleep 0.5
+   clear
+   banner "$1"
+   echo -e ""
+
+   echo "Please Wait.   / "
+   sleep 0.5
+   clear
+   banner "$1"
+   echo -e ""
+   
+   echo "Please Wait..  | "
+   sleep 0.5
+   clear
+   banner "$1"
+   echo -e ""
+   
+   echo "Please Wait... \ "
+   sleep 0.5
+   clear
+   banner "$1"
+   echo -e ""
 }
-banner
 
-echo "Please Wait.   / "
-sleep 0.5
-clear
-banner
+check_os() {
+   clear
+   
+   banner "$1"
+   echo -e ""
 
-echo "Please Wait..  | "
-sleep 0.5
-clear
-banner
+   lanip=$(ip addr | grep 'state UP' -A2 | tail -n1 | awk '{print $2}' | cut -f1 -d'/')
+   lanip6=$(ip addr | grep 'state UP' -A4 | tail -n1 | awk '{print $2}' | cut -f1 -d'/')
+   # publicip=$(dig +short myip.opendns.com @resolver1.opendns.com)
+   # host=$(host "$publicip" | awk '{print $5}' | sed 's/.$//')
 
-echo "Please Wait... \ "
-sleep 0.5
-clear
-banner
+   echo -e "        Detect Your OS"
+   sleep 0.5
+   echo "Kernel: "$(uname)
+   sleep 0.5
+   echo $(lsb_release -i)
+   sleep 0.5
+   echo $(lsb_release -c)
+   sleep 0.5
+   echo "Your IP Address: ""$lanip"
+   sleep 4
+   echo "Your IP Address (Ipv6): ""$lanip6"
+   sleep 0.5
+   # echo "Your IP Address (Public): ""$host"
+   # sleep 0.5
 
-echo "Please Wait.   / "
-sleep 0.5
-clear
-banner
-
-echo "Please Wait..  | "
-sleep 0.5
-clear
-banner
-
-echo "Please Wait... \ "
-sleep 0.5
-clear
-banner
-
-echo "Please Wait.   / "
-sleep 0.5
-clear
-banner
-
-echo "Please Wait..  | "
-sleep 0.5
-clear
-banner
-
-echo "Please Wait... \ "
-sleep 0.5
-clear
-banner
-
-echo "Please Wait.   / "
-sleep 0.5
-clear
-banner
-
-echo "Please Wait..  | "
-sleep 0.5
-clear
-banner
-
-echo "Please Wait... \ "
-sleep 0.5
-clear
-banner
-
-echo "Please Wait.   / "
-sleep 0.5
-clear
-banner
-
-echo "Please Wait..  | "
-sleep 0.5
-clear
-banner
-
-echo "Please Wait... \ "
-sleep 0.5
-clear
-banner
-
-echo "Please Wait.   / "
-sleep 0.5
-clear
-banner
-
-echo "Please Wait..  | "
-sleep 0.5
-clear
-banner
-
-echo "Please Wait... \ "
-sleep 0.5
-clear
-banner
-
-echo "Please Wait.   / "
-sleep 0.5
-clear
-banner
-
-echo "Please Wait..  | "
-sleep 0.5
-clear
-banner
-
-echo "Please Wait... \ "
-sleep 0.5
-clear
-banner
-
-echo "Please Wait.   / "
-sleep 0.5
-clear
-banner
-
-echo "Please Wait..  | "
-sleep 0.5
-clear
-banner
-
-echo "Please Wait... \ "
-sleep 0.5
-clear
-banner
+   # Clear terminal
+   clear
+}
