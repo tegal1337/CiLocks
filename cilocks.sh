@@ -11,13 +11,20 @@ source utils/permission.sh
 source utils/requirements.sh
 source utils/adb_connection.sh
 
+source source/update.sh
+source source/ip_logger.sh
+source source/get_webcam.sh
+source source/metasploit.sh
+source source/phone_info.sh
 source source/adb_toolkit.sh
+source source/control_android
 source source/factory_reset.sh
 source source/remove_lockscreen.sh
 source source/brute_pin_4_digit.sh
 source source/brute_pin_6_digit.sh
 source source/brute_pin_wordlist.sh
 source source/root_android_supersu.sh
+source source/firestore_vulnerability.sh
 source source/bypass_lockscreen_antiguard.sh
 
 # Declare readonly variable
@@ -56,28 +63,7 @@ menu
 SELECTED_MENU=$?
 
 if [[ $SELECTED_MENU == 1 ]]; then
-    # Remove old version
-    rm -f "$(pwd)/cilocks.sh" >/dev/null 2>&1
-    rm -f "$(pwd)/utils/config.sh" >/dev/null 2>&1
-    rm -f "$(pwd)/utils/os.sh" >/dev/null 2>&1
-
-    # Update new release
-    wget https://raw.githubusercontent.com/tegal1337/CiLocks/main/cilocks.sh -O "$(pwd)/cilocks.sh" >/dev/null 2>&1
-    wget https://raw.githubusercontent.com/tegal1337/CiLocks/main/utils/config.sh -O "$(pwd)/utils/config.sh" >/dev/null 2>&1
-    wget https://raw.githubusercontent.com/tegal1337/CiLocks/main/utils/os.sh -O "$(pwd)/utils/os.sh" >/dev/null 2>&1
-
-    # Give permission
-    do_chmod "$(pwd)" "$UTILS_DIR" "$SOURCE_DIR"
-
-    # Success log and do sleep for 3 second to show the logs
-    echo "Done!"
-    echo "Restarting Cilocks..."
-
-    # Do sleep for user to read the log
-    sleep 4
-
-    # Call main script
-    files "$(pwd)" $FILE_NAME
+    update "$UTILS_DIR" "$SOURCE_DIR" $FILE_NAME
 
 elif [[ $SELECTED_MENU == 2 ]]; then
     check_adb_connection
@@ -214,6 +200,51 @@ elif [[ $SELECTED_MENU == 9 ]]; then
         # Call main script
         files "$(pwd)" $FILE_NAME
     fi
+
+elif [[ $SELECTED_MENU == 10 ]]; then
+    check_adb_connection
+    ADB_CONNECTION=$?
+
+    if [[ $ADB_CONNECTION == 0 ]]; then
+        metasploit
+    else
+        clear
+        echo "No device attached, please connect your phone/emulator through adb"
+
+        # Do sleep for user to read the log
+        sleep 4
+
+        # Call main script
+        files "$(pwd)" $FILE_NAME
+    fi
+
+elif [[ $SELECTED_MENU == 11 ]]; then
+    controlandroid
+
+elif [[ $SELECTED_MENU == 12 ]]; then
+    check_adb_connection
+    ADB_CONNECTION=$?
+
+    if [[ $ADB_CONNECTION == 0 ]]; then
+        phoneinfo
+    else
+        clear
+        echo "No device attached, please connect your phone/emulator through adb"
+
+        # Do sleep for user to read the log
+        sleep 4
+
+        # Call main script
+        files "$(pwd)" $FILE_NAME
+    fi
+
+# elif [[ $SELECTED_MENU == 13 ]]; then
+
+elif [[ $SELECTED_MENU == 14 ]]; then
+    getwebcam
+
+elif [[ $SELECTED_MENU == 15 ]]; then
+    firestorevulnerability
 
 elif [[ $SELECTED_MENU == 99 ]]; then
     # Clear terminal

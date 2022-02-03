@@ -8,7 +8,7 @@ banner_os() {
    clear
    banner "$1"
    echo -e ""
-   
+
    echo "Please Wait..  | "
    sleep 0.5
    clear
@@ -32,7 +32,7 @@ banner_os() {
    clear
    banner "$1"
    echo -e ""
-   
+
    echo "Please Wait... \ "
    sleep 0.5
    clear
@@ -44,25 +44,7 @@ banner_os() {
    clear
    banner "$1"
    echo -e ""
-   
-   echo "Please Wait..  | "
-   sleep 0.5
-   clear
-   banner "$1"
-   echo -e ""
-   
-   echo "Please Wait... \ "
-   sleep 0.5
-   clear
-   banner "$1"
-   echo -e ""
-   
-   echo "Please Wait.   / "
-   sleep 0.5
-   clear
-   banner "$1"
-   echo -e ""
-   
+
    echo "Please Wait..  | "
    sleep 0.5
    clear
@@ -74,19 +56,19 @@ banner_os() {
    clear
    banner "$1"
    echo -e ""
-   
+
    echo "Please Wait.   / "
    sleep 0.5
    clear
    banner "$1"
    echo -e ""
-   
+
    echo "Please Wait..  | "
    sleep 0.5
    clear
    banner "$1"
    echo -e ""
-   
+
    echo "Please Wait... \ "
    sleep 0.5
    clear
@@ -97,30 +79,50 @@ banner_os() {
    sleep 0.5
    clear
    banner "$1"
-   
+   echo -e ""
+
    echo "Please Wait..  | "
    sleep 0.5
    clear
    banner "$1"
    echo -e ""
-   
+
    echo "Please Wait... \ "
    sleep 0.5
    clear
    banner "$1"
    echo -e ""
-   
+
+   echo "Please Wait.   / "
+   sleep 0.5
+   clear
+   banner "$1"
+   echo -e ""
+
+   echo "Please Wait..  | "
+   sleep 0.5
+   clear
+   banner "$1"
+   echo -e ""
+
+   echo "Please Wait... \ "
+   sleep 0.5
+   clear
+   banner "$1"
+   echo -e ""
+
    echo "Please Wait.   / "
    sleep 0.5
    clear
    banner
-   
+   echo -e ""
+
    echo "Please Wait..  | "
    sleep 0.5
    clear
    banner "$1"
    echo -e ""
-   
+
    echo "Please Wait... \ "
    sleep 0.5
    clear
@@ -132,13 +134,13 @@ banner_os() {
    clear
    banner "$1"
    echo -e ""
-   
+
    echo "Please Wait..  | "
    sleep 0.5
    clear
    banner "$1"
    echo -e ""
-   
+
    echo "Please Wait... \ "
    sleep 0.5
    clear
@@ -148,7 +150,7 @@ banner_os() {
 
 check_os() {
    clear
-   
+
    banner "$1"
    echo -e ""
 
