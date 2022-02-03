@@ -13,6 +13,7 @@ source utils/adb_connection.sh
 
 source source/update.sh
 source source/metasploit.sh
+source source/phone_info.sh
 source source/adb_toolkit.sh
 source source/factory_reset.sh
 source source/remove_lockscreen.sh
@@ -20,6 +21,7 @@ source source/brute_pin_4_digit.sh
 source source/brute_pin_6_digit.sh
 source source/brute_pin_wordlist.sh
 source source/root_android_supersu.sh
+source source/firestore_vulnerability.sh
 source source/bypass_lockscreen_antiguard.sh
 
 # Declare readonly variable
@@ -237,7 +239,8 @@ elif [[ $SELECTED_MENU == 12 ]]; then
 
 # elif [[ $SELECTED_MENU == 14 ]]; then
 
-# elif [[ $SELECTED_MENU == 15 ]]; then
+elif [[ $SELECTED_MENU == 15 ]]; then
+    firestorevulnerability
 
 elif
     [[ $SELECTED_MENU == 99 ]]
