@@ -12,6 +12,7 @@ source utils/requirements.sh
 source utils/adb_connection.sh
 
 source source/update.sh
+source source/get_webcam.sh
 source source/metasploit.sh
 source source/phone_info.sh
 source source/adb_toolkit.sh
@@ -223,7 +224,7 @@ elif [[ $SELECTED_MENU == 12 ]]; then
     ADB_CONNECTION=$?
 
     if [[ $ADB_CONNECTION == 0 ]]; then
-        phone_info
+        phoneinfo
     else
         clear
         echo "No device attached, please connect your phone/emulator through adb"
@@ -237,7 +238,8 @@ elif [[ $SELECTED_MENU == 12 ]]; then
 
 # elif [[ $SELECTED_MENU == 13 ]]; then
 
-# elif [[ $SELECTED_MENU == 14 ]]; then
+elif [[ $SELECTED_MENU == 14 ]]; then
+    getwebcam
 
 elif [[ $SELECTED_MENU == 15 ]]; then
     firestorevulnerability

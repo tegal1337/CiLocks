@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-phone_info() {
+phoneinfo() {
     manu=$(adb shell getprop ro.product.manufacturer)
     model=$(adb shell getprop ro.product.model)
     version=$(adb shell getprop ro.build.version.release)
