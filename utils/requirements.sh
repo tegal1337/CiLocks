@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-config() {
+requirements() {
     echo -e "Detect Installed Package";
     clear
 

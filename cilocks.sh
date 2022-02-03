@@ -1,66 +1,60 @@
 #!/usr/bin/env bash
 
+# Import or call other script
 # source utils/colors
+source utils/os.sh
 source utils/menu.sh
 source utils/files.sh
 source utils/banner.sh
-source utils/config.sh
 source utils/do_chmod.sh
 source utils/permission.sh
+source utils/requirements.sh
 source utils/adb_connection.sh
 
+source source/update.sh
+source source/ip_logger.sh
+source source/get_webcam.sh
+source source/metasploit.sh
+source source/phone_info.sh
 source source/adb_toolkit.sh
+source source/control_android
+source source/factory_reset.sh
+source source/remove_lockscreen.sh
 source source/brute_pin_4_digit.sh
 source source/brute_pin_6_digit.sh
 source source/brute_pin_wordlist.sh
 source source/root_android_supersu.sh
+source source/firestore_vulnerability.sh
 source source/bypass_lockscreen_antiguard.sh
 
+# Declare readonly variable
 readonly VERSION="v2.1"
 readonly FILE_NAME="cilocks.sh"
 readonly UTILS_DIR="utils/*.sh"
 readonly SOURCE_DIR="source/*.sh"
 
+# Check if permission is root
 is_root_user
 ROOT_STATUS=$?
-
 if [[ $ROOT_STATUS == 1 ]]; then
     echo "You need to run this script as a root user."
     exit 1
 fi
 
+# Show banner
 banner "$VERSION"
 
-# lanip=$(ip addr | grep 'state UP' -A2 | tail -n1 | awk '{print $2}' | cut -f1 -d'/')
-# lanip6=$(ip addr | grep 'state UP' -A4 | tail -n1 | awk '{print $2}' | cut -f1 -d'/')
-# publicip=$(dig +short myip.opendns.com @resolver1.opendns.com)
-# # host=$(host "$publicip" | awk '{print $5}' | sed 's/.$//')
-# #####os
-# source data/os
-# sleep 1
-# function os() {
-#     banner
-#     echo -e "${m}        Detect Your OS ${n}"
-# }
-# os
-# sleep 0.5
-# echo "Kernel: "$(uname)
-# sleep 0.5
-# echo $(lsb_release -i)
-# sleep 0.5
-# echo $(lsb_release -c)
-# sleep 0.5
-# echo "Your IP Address: ""$lanip"
-# sleep 3
-# # echo "Your IP Address (Ipv6): "$lanip6
-# # sleep 0.5
-# # echo "Your IP Address (Public): "$host
-# # sleep 0.5
+# Banner loading
+banner_os "$VERSION"
 
-# config
+# Check os
+check_os
 
-# banner "$VERSION"
+# Check requirements
+requirements
 
+# Show banner
+banner "$VERSION"
 
 # Show menu
 menu
@@ -69,28 +63,7 @@ menu
 SELECTED_MENU=$?
 
 if [[ $SELECTED_MENU == 1 ]]; then
-    # Remove old version
-    rm -f "$(pwd)/cilocks.sh" >/dev/null 2>&1
-    rm -f "$(pwd)/utils/config.sh" >/dev/null 2>&1
-    rm -f "$(pwd)/utils/os.sh" >/dev/null 2>&1
-
-    # Update new release
-    wget https://raw.githubusercontent.com/tegal1337/CiLocks/main/cilocks.sh -O "$(pwd)/cilocks.sh" >/dev/null 2>&1
-    wget https://raw.githubusercontent.com/tegal1337/CiLocks/main/utils/config.sh -O "$(pwd)/utils/config.sh" >/dev/null 2>&1
-    wget https://raw.githubusercontent.com/tegal1337/CiLocks/main/utils/os.sh -O "$(pwd)/utils/os.sh" >/dev/null 2>&1
-
-    # Give permission
-    do_chmod "$(pwd)" $UTILS_DIR $SOURCE_DIR
-
-    # Success log and do sleep for 3 second to show the logs
-    echo "Done!"
-    echo "Restarting Cilocks..."
-
-    # Do sleep for user to read the log
-    sleep 4
-
-    # Call main script
-    files "$(pwd)" $FILE_NAME
+    update "$UTILS_DIR" "$SOURCE_DIR" $FILE_NAME
 
 elif [[ $SELECTED_MENU == 2 ]]; then
     check_adb_connection
@@ -194,10 +167,89 @@ elif [[ $SELECTED_MENU == 7 ]]; then
         files "$(pwd)" $FILE_NAME
     fi
 
+elif [[ $SELECTED_MENU == 8 ]]; then
+    check_adb_connection
+    ADB_CONNECTION=$?
+
+    if [[ $ADB_CONNECTION == 0 ]]; then
+        factoryreset
+    else
+        clear
+        echo "No device attached, please connect your phone/emulator through adb"
+
+        # Do sleep for user to read the log
+        sleep 4
+
+        # Call main script
+        files "$(pwd)" $FILE_NAME
+    fi
+
+elif [[ $SELECTED_MENU == 9 ]]; then
+    check_adb_connection
+    ADB_CONNECTION=$?
+
+    if [[ $ADB_CONNECTION == 0 ]]; then
+        removelockscreen
+    else
+        clear
+        echo "No device attached, please connect your phone/emulator through adb"
+
+        # Do sleep for user to read the log
+        sleep 4
+
+        # Call main script
+        files "$(pwd)" $FILE_NAME
+    fi
+
+elif [[ $SELECTED_MENU == 10 ]]; then
+    check_adb_connection
+    ADB_CONNECTION=$?
+
+    if [[ $ADB_CONNECTION == 0 ]]; then
+        metasploit
+    else
+        clear
+        echo "No device attached, please connect your phone/emulator through adb"
+
+        # Do sleep for user to read the log
+        sleep 4
+
+        # Call main script
+        files "$(pwd)" $FILE_NAME
+    fi
+
+elif [[ $SELECTED_MENU == 11 ]]; then
+    controlandroid
+
+elif [[ $SELECTED_MENU == 12 ]]; then
+    check_adb_connection
+    ADB_CONNECTION=$?
+
+    if [[ $ADB_CONNECTION == 0 ]]; then
+        phoneinfo
+    else
+        clear
+        echo "No device attached, please connect your phone/emulator through adb"
+
+        # Do sleep for user to read the log
+        sleep 4
+
+        # Call main script
+        files "$(pwd)" $FILE_NAME
+    fi
+
+# elif [[ $SELECTED_MENU == 13 ]]; then
+
+elif [[ $SELECTED_MENU == 14 ]]; then
+    getwebcam
+
+elif [[ $SELECTED_MENU == 15 ]]; then
+    firestorevulnerability
+
 elif [[ $SELECTED_MENU == 99 ]]; then
     # Clear terminal
     clear
-    
+
     # Show messages
     echo "successfuly exit, goodbye!"
 
@@ -206,8 +258,10 @@ elif [[ $SELECTED_MENU == 99 ]]; then
 
     # Clear terminal
     clear
+
+    # Exit from terminal
+    exit 1
 else
     # Call main script
     files "$(pwd)" $FILE_NAME
 fi
-
