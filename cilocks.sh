@@ -48,10 +48,10 @@ banner "$VERSION"
 banner_os "$VERSION"
 
 # Check os
-# check_os
+check_os
 
 # Check requirements
-# requirements
+requirements
 
 # Show banner
 banner "$VERSION"
