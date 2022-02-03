@@ -136,13 +136,13 @@ getwebcam() {
         checkfound
     }
 
-    ngrok_serve() {
+    main_webcam() {
         ngrok_server
         sleep 1
         clear
-        ngrok_serve
+        track_ip
 
     }
     dependencies
-    ngrok_serve
+    main_webcam
 }

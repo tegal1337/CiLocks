@@ -12,10 +12,12 @@ source utils/requirements.sh
 source utils/adb_connection.sh
 
 source source/update.sh
+source source/ip_logger.sh
 source source/get_webcam.sh
 source source/metasploit.sh
 source source/phone_info.sh
 source source/adb_toolkit.sh
+source source/control_android
 source source/factory_reset.sh
 source source/remove_lockscreen.sh
 source source/brute_pin_4_digit.sh
@@ -217,7 +219,7 @@ elif [[ $SELECTED_MENU == 10 ]]; then
     fi
 
 elif [[ $SELECTED_MENU == 11 ]]; then
-    scrcpy
+    controlandroid
 
 elif [[ $SELECTED_MENU == 12 ]]; then
     check_adb_connection
@@ -244,9 +246,7 @@ elif [[ $SELECTED_MENU == 14 ]]; then
 elif [[ $SELECTED_MENU == 15 ]]; then
     firestorevulnerability
 
-elif
-    [[ $SELECTED_MENU == 99 ]]
-then
+elif [[ $SELECTED_MENU == 99 ]]; then
     # Clear terminal
     clear
 
