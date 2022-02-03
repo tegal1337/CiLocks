@@ -196,9 +196,7 @@ elif [[ $SELECTED_MENU == 9 ]]; then
         files "$(pwd)" $FILE_NAME
     fi
 
-elif
-    [[ $SELECTED_MENU == 10 ]]
-then
+elif [[ $SELECTED_MENU == 10 ]]; then
     check_adb_connection
     ADB_CONNECTION=$?
 
@@ -215,7 +213,35 @@ then
         files "$(pwd)" $FILE_NAME
     fi
 
-elif [[ $SELECTED_MENU == 99 ]]; then
+elif [[ $SELECTED_MENU == 11 ]]; then
+    scrcpy
+
+elif [[ $SELECTED_MENU == 12 ]]; then
+    check_adb_connection
+    ADB_CONNECTION=$?
+
+    if [[ $ADB_CONNECTION == 0 ]]; then
+        phone_info
+    else
+        clear
+        echo "No device attached, please connect your phone/emulator through adb"
+
+        # Do sleep for user to read the log
+        sleep 4
+
+        # Call main script
+        files "$(pwd)" $FILE_NAME
+    fi
+
+# elif [[ $SELECTED_MENU == 13 ]]; then
+
+# elif [[ $SELECTED_MENU == 14 ]]; then
+
+# elif [[ $SELECTED_MENU == 15 ]]; then
+
+elif
+    [[ $SELECTED_MENU == 99 ]]
+then
     # Clear terminal
     clear
 
