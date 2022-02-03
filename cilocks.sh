@@ -11,6 +11,8 @@ source utils/permission.sh
 source utils/requirements.sh
 source utils/adb_connection.sh
 
+source source/update.sh
+source source/metasploit.sh
 source source/adb_toolkit.sh
 source source/factory_reset.sh
 source source/remove_lockscreen.sh
@@ -41,10 +43,10 @@ banner "$VERSION"
 banner_os "$VERSION"
 
 # Check os
-check_os
+# check_os
 
 # Check requirements
-requirements
+# requirements
 
 # Show banner
 banner "$VERSION"
@@ -56,28 +58,7 @@ menu
 SELECTED_MENU=$?
 
 if [[ $SELECTED_MENU == 1 ]]; then
-    # Remove old version
-    rm -f "$(pwd)/cilocks.sh" >/dev/null 2>&1
-    rm -f "$(pwd)/utils/config.sh" >/dev/null 2>&1
-    rm -f "$(pwd)/utils/os.sh" >/dev/null 2>&1
-
-    # Update new release
-    wget https://raw.githubusercontent.com/tegal1337/CiLocks/main/cilocks.sh -O "$(pwd)/cilocks.sh" >/dev/null 2>&1
-    wget https://raw.githubusercontent.com/tegal1337/CiLocks/main/utils/config.sh -O "$(pwd)/utils/config.sh" >/dev/null 2>&1
-    wget https://raw.githubusercontent.com/tegal1337/CiLocks/main/utils/os.sh -O "$(pwd)/utils/os.sh" >/dev/null 2>&1
-
-    # Give permission
-    do_chmod "$(pwd)" "$UTILS_DIR" "$SOURCE_DIR"
-
-    # Success log and do sleep for 3 second to show the logs
-    echo "Done!"
-    echo "Restarting Cilocks..."
-
-    # Do sleep for user to read the log
-    sleep 4
-
-    # Call main script
-    files "$(pwd)" $FILE_NAME
+    update "$UTILS_DIR" "$SOURCE_DIR" $FILE_NAME
 
 elif [[ $SELECTED_MENU == 2 ]]; then
     check_adb_connection
@@ -204,6 +185,25 @@ elif [[ $SELECTED_MENU == 9 ]]; then
 
     if [[ $ADB_CONNECTION == 0 ]]; then
         removelockscreen
+    else
+        clear
+        echo "No device attached, please connect your phone/emulator through adb"
+
+        # Do sleep for user to read the log
+        sleep 4
+
+        # Call main script
+        files "$(pwd)" $FILE_NAME
+    fi
+
+elif
+    [[ $SELECTED_MENU == 10 ]]
+then
+    check_adb_connection
+    ADB_CONNECTION=$?
+
+    if [[ $ADB_CONNECTION == 0 ]]; then
+        metasploit
     else
         clear
         echo "No device attached, please connect your phone/emulator through adb"
