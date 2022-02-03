@@ -12,6 +12,8 @@ source utils/requirements.sh
 source utils/adb_connection.sh
 
 source source/adb_toolkit.sh
+source source/factory_reset.sh
+source source/remove_lockscreen.sh
 source source/brute_pin_4_digit.sh
 source source/brute_pin_6_digit.sh
 source source/brute_pin_wordlist.sh
@@ -168,6 +170,40 @@ elif [[ $SELECTED_MENU == 7 ]]; then
 
     if [[ $ADB_CONNECTION == 0 ]]; then
         adbtoolkit
+    else
+        clear
+        echo "No device attached, please connect your phone/emulator through adb"
+
+        # Do sleep for user to read the log
+        sleep 4
+
+        # Call main script
+        files "$(pwd)" $FILE_NAME
+    fi
+
+elif [[ $SELECTED_MENU == 8 ]]; then
+    check_adb_connection
+    ADB_CONNECTION=$?
+
+    if [[ $ADB_CONNECTION == 0 ]]; then
+        factoryreset
+    else
+        clear
+        echo "No device attached, please connect your phone/emulator through adb"
+
+        # Do sleep for user to read the log
+        sleep 4
+
+        # Call main script
+        files "$(pwd)" $FILE_NAME
+    fi
+
+elif [[ $SELECTED_MENU == 9 ]]; then
+    check_adb_connection
+    ADB_CONNECTION=$?
+
+    if [[ $ADB_CONNECTION == 0 ]]; then
+        removelockscreen
     else
         clear
         echo "No device attached, please connect your phone/emulator through adb"
