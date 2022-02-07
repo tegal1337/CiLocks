@@ -11,22 +11,6 @@ source utils/permission.sh
 source utils/requirements.sh
 source utils/adb_connection.sh
 
-source source/update.sh
-source source/ip_logger.sh
-source source/get_webcam.sh
-source source/metasploit.sh
-source source/phone_info.sh
-source source/adb_toolkit.sh
-source source/control_android
-source source/factory_reset.sh
-source source/remove_lockscreen.sh
-source source/brute_pin_4_digit.sh
-source source/brute_pin_6_digit.sh
-source source/brute_pin_wordlist.sh
-source source/root_android_supersu.sh
-source source/firestore_vulnerability.sh
-source source/bypass_lockscreen_antiguard.sh
-
 # Declare readonly variable
 readonly VERSION="v2.1"
 readonly FILE_NAME="cilocks.sh"
@@ -63,6 +47,7 @@ menu
 SELECTED_MENU=$?
 
 if [[ $SELECTED_MENU == 1 ]]; then
+    source source/update.sh
     update "$UTILS_DIR" "$SOURCE_DIR" $FILE_NAME
 
 elif [[ $SELECTED_MENU == 2 ]]; then
@@ -70,6 +55,7 @@ elif [[ $SELECTED_MENU == 2 ]]; then
     ADB_CONNECTION=$?
 
     if [[ $ADB_CONNECTION == 0 ]]; then
+        source source/brute_pin_4_digit.sh
         brutepin4digit
     else
         clear
@@ -87,6 +73,7 @@ elif [[ $SELECTED_MENU == 3 ]]; then
     ADB_CONNECTION=$?
 
     if [[ $ADB_CONNECTION == 0 ]]; then
+        source source/brute_pin_6_digit.sh
         brutepin6digit
     else
         clear
@@ -104,6 +91,7 @@ elif [[ $SELECTED_MENU == 4 ]]; then
     ADB_CONNECTION=$?
 
     if [[ $ADB_CONNECTION == 0 ]]; then
+        source source/brute_pin_wordlist.sh
         brutepinwordlist
     else
         clear
@@ -121,6 +109,7 @@ elif [[ $SELECTED_MENU == 5 ]]; then
     ADB_CONNECTION=$?
 
     if [[ $ADB_CONNECTION == 0 ]]; then
+        source source/bypass_lockscreen_antiguard.sh
         bypasslockscreenantiguard
     else
         clear
@@ -138,6 +127,7 @@ elif [[ $SELECTED_MENU == 6 ]]; then
     ADB_CONNECTION=$?
 
     if [[ $ADB_CONNECTION == 0 ]]; then
+        source source/root_android_supersu.sh
         rootandroidsupersu
     else
         clear
@@ -155,6 +145,7 @@ elif [[ $SELECTED_MENU == 7 ]]; then
     ADB_CONNECTION=$?
 
     if [[ $ADB_CONNECTION == 0 ]]; then
+        source source/adb_toolkit.sh
         adbtoolkit
     else
         clear
@@ -172,6 +163,7 @@ elif [[ $SELECTED_MENU == 8 ]]; then
     ADB_CONNECTION=$?
 
     if [[ $ADB_CONNECTION == 0 ]]; then
+        source source/factory_reset.sh
         factoryreset
     else
         clear
@@ -189,6 +181,7 @@ elif [[ $SELECTED_MENU == 9 ]]; then
     ADB_CONNECTION=$?
 
     if [[ $ADB_CONNECTION == 0 ]]; then
+        source source/remove_lockscreen.sh
         removelockscreen
     else
         clear
@@ -206,6 +199,7 @@ elif [[ $SELECTED_MENU == 10 ]]; then
     ADB_CONNECTION=$?
 
     if [[ $ADB_CONNECTION == 0 ]]; then
+        source source/metasploit.sh
         metasploit
     else
         clear
@@ -219,6 +213,7 @@ elif [[ $SELECTED_MENU == 10 ]]; then
     fi
 
 elif [[ $SELECTED_MENU == 11 ]]; then
+    source source/control_android.sh
     controlandroid
 
 elif [[ $SELECTED_MENU == 12 ]]; then
@@ -226,6 +221,7 @@ elif [[ $SELECTED_MENU == 12 ]]; then
     ADB_CONNECTION=$?
 
     if [[ $ADB_CONNECTION == 0 ]]; then
+        source source/phone_info.sh
         phoneinfo
     else
         clear
@@ -238,12 +234,16 @@ elif [[ $SELECTED_MENU == 12 ]]; then
         files "$(pwd)" $FILE_NAME
     fi
 
-# elif [[ $SELECTED_MENU == 13 ]]; then
+elif [[ $SELECTED_MENU == 13 ]]; then
+    source source/ip_logger.sh
+    iplogger
 
 elif [[ $SELECTED_MENU == 14 ]]; then
+    source source/get_webcam.sh
     getwebcam
 
 elif [[ $SELECTED_MENU == 15 ]]; then
+    source source/firestore_vulnerability.sh
     firestorevulnerability
 
 elif [[ $SELECTED_MENU == 99 ]]; then
