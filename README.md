@@ -112,6 +112,13 @@ or download <a href="https://github.com/tegal1337/CiLocks/releases/download/V2.1
     
     if 5x the wrong password will automatically delay 30 seconds
 
+#### To use Spycam / Iplogger if the url does not appear
+
+     Register on ngrok.com
+     
+     Write the command on the path /CiLocks
+     # ./ngrok authtoken <TOKEN>
+
 #### Article & Video
 
 - Android Malware https://www.instagram.com/p/CPqJAvHjQ2Q/
