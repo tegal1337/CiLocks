@@ -1,0 +1,3 @@
+sudo apt update -y
+
+sudo apt install php nodejs npm adb scrcpy wget unzip apktool jq -y
